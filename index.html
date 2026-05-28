@@ -1,163 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agentic Shelf | Emerging Brand Distribution</title>
-  <meta name="description" content="A simple walkthrough for Agentic Shelf, an onboarding layer that helps emerging consumer brands become agent-readable." />
-  <style>
-    :root { --ink:#17202a; --muted:#667381; --line:#dce3ea; --paper:#f6f8fb; --panel:#fff; --blue:#2868d8; --green:#11a36b; --yellow:#e6a93a; --red:#d9504a; --charcoal:#223044; }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; min-width:320px; background:linear-gradient(180deg,#f8fafc 0%,#eef3f7 100%); color:var(--ink); font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
-    a { color:inherit; text-decoration:none; }
-    button,input,textarea,select { font:inherit; }
-    button { cursor:pointer; }
-    .shell { display:grid; grid-template-columns:260px minmax(0,1fr); min-height:100vh; }
-    .rail { position:sticky; top:0; height:100vh; border-right:1px solid var(--line); background:rgba(255,255,255,.9); padding:24px; }
-    .brand { display:flex; gap:12px; align-items:center; margin-bottom:34px; }
-    .mark { display:grid; width:44px; height:44px; place-items:center; background:var(--charcoal); color:#fff; font-weight:800; }
-    .brand strong,.brand small { display:block; }
-    .brand small,.eyebrow,.muted { color:var(--muted); }
-    nav { display:grid; gap:8px; }
-    nav a { border-left:3px solid transparent; padding:11px 12px; color:#516070; font-weight:800; }
-    nav a:hover { border-color:var(--blue); background:#edf4ff; color:var(--blue); }
-    main { display:grid; gap:22px; padding:36px; min-width:0; }
-    section,.card,.panel { border:1px solid var(--line); background:rgba(255,255,255,.96); box-shadow:0 12px 34px rgba(23,32,42,.07); }
-    .hero { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr); gap:18px; }
-    .hero-copy,.side { padding:44px; }
-    .hero h1 { max-width:900px; margin:10px 0 18px; font-size:72px; line-height:.95; letter-spacing:0; overflow-wrap:break-word; }
-    .hero p { max-width:720px; color:var(--muted); font-size:18px; line-height:1.55; }
-    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
-    .button { display:inline-flex; min-height:42px; align-items:center; justify-content:center; border:0; padding:0 16px; font-weight:800; }
-    .primary { background:var(--blue); color:#fff; box-shadow:0 10px 24px rgba(40,104,216,.24); }
-    .secondary { border:1px solid var(--line); background:#fff; color:var(--ink); }
-    .side { display:flex; flex-direction:column; justify-content:flex-end; }
-    .side h2,.section-head h2 { margin:10px 0 0; font-size:36px; line-height:1.03; overflow-wrap:break-word; }
-    .side ul { display:grid; gap:13px; padding:0; margin:24px 0 0; list-style:none; }
-    .side li { border-top:1px solid var(--line); padding-top:13px; color:#405064; line-height:1.45; }
-    .eyebrow { margin:0; color:var(--blue); font-size:11px; font-weight:900; letter-spacing:.04em; text-transform:uppercase; }
-    .section { padding:28px; }
-    .section-head { display:flex; justify-content:space-between; gap:16px; align-items:end; margin-bottom:22px; }
-    .grid-4 { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
-    .grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
-    .card { box-shadow:none; padding:18px; min-height:190px; }
-    .card .num { display:grid; width:36px; height:36px; place-items:center; background:var(--charcoal); color:#fff; font-weight:900; font-size:12px; }
-    .card h3 { margin:22px 0 8px; font-size:20px; }
-    .card p { margin:0; color:var(--muted); line-height:1.5; }
-    .demo { display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,.85fr); gap:18px; align-items:start; }
-    .form { padding:28px; }
-    .form h2,.output h2 { margin:10px 0 20px; font-size:36px; line-height:1.02; }
-    .fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-    label { display:grid; gap:7px; color:#344254; font-size:13px; font-weight:800; }
-    .wide { grid-column:span 2; }
-    input,textarea,select { width:100%; border:1px solid #cad5df; background:#fbfdff; color:var(--ink); outline:0; padding:12px; }
-    textarea { min-height:82px; resize:vertical; }
-    .output { display:grid; gap:14px; }
-    .metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
-    .metric { border:1px solid var(--line); background:#fff; padding:16px; }
-    .metric span { color:var(--muted); font-size:11px; font-weight:900; text-transform:uppercase; }
-    .metric strong { display:block; margin-top:10px; font-size:34px; }
-    pre { overflow:auto; max-height:360px; margin:0; border:1px solid #26364d; background:#121a26; color:#dce8f6; padding:16px; font-size:12px; line-height:1.55; }
-    .channels { display:grid; gap:10px; }
-    .channel { border:1px solid var(--line); padding:13px; background:#fbfdff; }
-    .channel.ready { border-color:rgba(17,163,107,.45); background:#f3fbf7; }
-    .channel strong { display:block; }
-    .channel small { color:var(--muted); }
-    .prompt { display:grid; grid-template-columns:minmax(0,1fr) 140px; gap:14px; align-items:center; border:1px solid var(--line); padding:13px; background:#fff; }
-    .bar { height:10px; background:#e6edf3; overflow:hidden; }
-    .bar i { display:block; width:var(--score); height:100%; background:linear-gradient(90deg,var(--red),var(--yellow),var(--green)); }
-    .toast { position:fixed; right:18px; bottom:18px; max-width:340px; transform:translateY(12px); opacity:0; border:1px solid #bcd0e3; background:#fff; padding:13px 15px; font-weight:800; box-shadow:0 18px 52px rgba(23,32,42,.12); transition:.18s ease; }
-    .toast.show { transform:translateY(0); opacity:1; }
-    @media (max-width:1080px) { .shell{grid-template-columns:1fr}.rail{position:static;height:auto}.rail nav{display:flex;overflow-x:auto}.rail nav a{flex:0 0 auto}.hero,.demo{grid-template-columns:1fr}.grid-4,.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}.hero h1{font-size:56px} }
-    @media (max-width:680px) { main{padding:18px}.rail{padding:18px}.hero-copy,.side,.section,.form{padding:22px}.hero h1{font-size:42px}.side h2,.section-head h2,.form h2,.output h2{font-size:30px}.grid-4,.grid-3,.fields,.metrics{grid-template-columns:1fr}.wide{grid-column:auto}.section-head{display:grid}.prompt{grid-template-columns:1fr}.button{width:100%} }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agent Product Discovery | Emerging Brand Distribution</title>
+<meta name="description" content="A walkthrough and demo for helping emerging consumer brands become discoverable in AI shopping and agentic commerce flows." />
+<style>
+:root{--ink:#17202a;--muted:#667381;--line:#dce3ea;--blue:#2868d8;--green:#11a36b;--yellow:#e6a93a;--red:#d9504a;--charcoal:#223044}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:linear-gradient(180deg,#f8fafc 0%,#eef3f7 100%);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer}.shell{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}.rail{position:sticky;top:0;height:100vh;border-right:1px solid var(--line);background:rgba(255,255,255,.92);padding:24px}.brand{display:flex;gap:12px;align-items:center;margin-bottom:34px}.mark{display:grid;width:44px;height:44px;place-items:center;background:var(--charcoal);color:#fff;font-weight:800}.brand strong,.brand small{display:block}.brand small,.muted{color:var(--muted)}nav{display:grid;gap:8px}nav a{border-left:3px solid transparent;padding:11px 12px;color:#516070;font-weight:800}nav a:hover{border-color:var(--blue);background:#edf4ff;color:var(--blue)}main{display:grid;gap:22px;padding:36px;min-width:0}section,.card{border:1px solid var(--line);background:rgba(255,255,255,.97);box-shadow:0 12px 34px rgba(23,32,42,.07)}.hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:18px}.hero-copy,.side,.section,.form{padding:32px}.hero-copy{padding:44px}.hero h1{max-width:920px;margin:10px 0 18px;font-size:68px;line-height:.95;letter-spacing:0;overflow-wrap:break-word}.hero p,.side li,.card p,.note{color:var(--muted);line-height:1.5}.hero p{max-width:780px;font-size:18px}.eyebrow{margin:0;color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.04em;text-transform:uppercase}.side{display:flex;flex-direction:column;justify-content:flex-end}h2{margin:10px 0 0;font-size:36px;line-height:1.04;letter-spacing:0;overflow-wrap:break-word}h3{margin:0 0 8px;font-size:20px}.side ul{display:grid;gap:13px;padding:0;margin:24px 0 0;list-style:none}.side li{border-top:1px solid var(--line);padding-top:13px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.button{display:inline-flex;min-height:42px;align-items:center;justify-content:center;border:0;padding:0 16px;font-weight:800}.primary{background:var(--blue);color:#fff;box-shadow:0 10px 24px rgba(40,104,216,.24)}.secondary{border:1px solid var(--line);background:#fff;color:var(--ink)}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:22px}.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{box-shadow:none;padding:18px;min-height:168px}.num{display:grid;width:36px;height:36px;place-items:center;margin-bottom:22px;background:var(--charcoal);color:#fff;font-weight:900;font-size:12px}.demo{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.9fr);gap:18px;align-items:start}.form h2{margin-bottom:20px}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}label{display:grid;gap:7px;color:#344254;font-size:13px;font-weight:800}.wide{grid-column:span 2}input,textarea,select{width:100%;border:1px solid #cad5df;background:#fbfdff;color:var(--ink);outline:0;padding:12px}textarea{min-height:82px;resize:vertical}.output{display:grid;gap:14px}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.metric{border:1px solid var(--line);background:#fff;padding:16px}.metric span{color:var(--muted);font-size:11px;font-weight:900;text-transform:uppercase}.metric strong{display:block;margin-top:10px;font-size:34px}.metric small{color:var(--muted);line-height:1.35}pre{overflow:auto;max-height:430px;margin:0;border:1px solid #26364d;background:#121a26;color:#dce8f6;padding:16px;font-size:12px;line-height:1.55;white-space:pre-wrap}.tabs{display:flex;flex-wrap:wrap;gap:8px}.tab{border:1px solid var(--line);background:#fff;padding:9px 11px;color:#415062;font-weight:800}.tab.active{border-color:var(--blue);color:#fff;background:var(--blue)}.channel,.artifact{display:grid;gap:8px;border:1px solid var(--line);padding:14px;background:#fbfdff}.channel.ready{border-color:rgba(17,163,107,.45);background:#f3fbf7}.channel.warning{border-color:rgba(230,169,58,.55);background:#fffaf0}.channel span{color:var(--muted);font-size:11px;font-weight:900;text-transform:uppercase}.prompt{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:14px;align-items:center;border:1px solid var(--line);padding:14px;background:#fff}.prompt small{color:var(--muted)}.bar{height:10px;background:#e6edf3;overflow:hidden}.bar i{display:block;width:var(--score);height:100%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))}.delta{color:var(--green);font-weight:900}.artifact-list{display:grid;gap:12px}.toast{position:fixed;right:18px;bottom:18px;max-width:360px;transform:translateY(12px);opacity:0;border:1px solid #bcd0e3;background:#fff;padding:13px 15px;font-weight:800;box-shadow:0 18px 52px rgba(23,32,42,.12);transition:.18s ease}.toast.show{transform:translateY(0);opacity:1}@media(max-width:1120px){.shell{grid-template-columns:1fr}.rail{position:static;height:auto}.rail nav{display:flex;overflow-x:auto}.rail nav a{flex:0 0 auto}.hero,.demo{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}.hero h1{font-size:54px}}@media(max-width:760px){main{padding:18px}.rail{padding:18px}.hero-copy,.side,.section,.form{padding:22px}.hero h1{font-size:42px}h2{font-size:30px}.grid-4,.grid-3,.fields,.metrics{grid-template-columns:1fr}.wide{grid-column:auto}.section-head{display:grid}.prompt{grid-template-columns:1fr}.button{width:100%}}
+</style>
 </head>
 <body>
-  <div class="shell">
-    <aside class="rail">
-      <a class="brand" href="#overview"><span class="mark">AS</span><span><strong>Agentic Shelf</strong><small>Distribution OS</small></span></a>
-      <nav aria-label="Page sections">
-        <a href="#overview">Overview</a><a href="#how">How it works</a><a href="#demo">Live demo</a><a href="#outcomes">What it achieves</a>
-      </nav>
-    </aside>
-    <main>
-      <section class="hero" id="overview">
-        <div class="hero-copy">
-          <p class="eyebrow">Agentic commerce infrastructure</p>
-          <h1>Make emerging brands readable to AI shopping agents.</h1>
-          <p>Agentic Shelf is a guided onboarding layer that turns ordinary product knowledge into structured product passports, distribution readiness, and shopping-intent visibility tests.</p>
-          <div class="actions"><a class="button primary" href="#demo">Try the walkthrough</a><a class="button secondary" href="#how">See the process</a></div>
-        </div>
-        <aside class="side">
-          <p class="eyebrow">Context</p>
-          <h2>Consumer discovery is moving from search pages to AI answers.</h2>
-          <ul>
-            <li>New brands need clean product facts, proof, policies, and purchase options that agents can trust.</li>
-            <li>Agents need structured evidence before recommending unfamiliar products over established brands.</li>
-            <li>This product acts like an onboarding and distribution layer between brands and agentic shopping surfaces.</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section class="section" id="how">
-        <div class="section-head"><div><p class="eyebrow">How to use it</p><h2>A four-step flow for nontechnical brand teams.</h2></div><a class="button secondary" href="#demo">Open demo</a></div>
-        <div class="grid-4">
-          <article class="card"><span class="num">01</span><h3>Answer plain questions</h3><p>Describe the product, target buyer, use cases, claims, proof, price, inventory, and returns.</p></article>
-          <article class="card"><span class="num">02</span><h3>Create a product passport</h3><p>The system converts the answers into a structured truth layer that agents can query or ingest.</p></article>
-          <article class="card"><span class="num">03</span><h3>Map distribution rails</h3><p>Readiness is checked for OpenAI, Google, Shopify, Perplexity, Claude/MCP, and marketplace feeds.</p></article>
-          <article class="card"><span class="num">04</span><h3>Monitor visibility</h3><p>Prompt simulations show where the product should appear and what evidence is still missing.</p></article>
-        </div>
-      </section>
-
-      <section class="demo" id="demo">
-        <form class="form" id="brandForm">
-          <p class="eyebrow">Live demo</p><h2>Onboard a sample product.</h2>
-          <div class="fields">
-            <label>Brand name<input id="brand" placeholder="BrightKind"></label>
-            <label>Product name<input id="product" placeholder="Daily Mineral SPF 40"></label>
-            <label>Category<select id="category"><option>Beauty & personal care</option><option>Food & beverage</option><option>Home</option><option>Pet</option><option>Wellness</option></select></label>
-            <label>Price<input id="price" placeholder="$32"></label>
-            <label class="wide">Target audience<textarea id="audience" placeholder="People with sensitive skin who want a lightweight daily sunscreen."></textarea></label>
-            <label class="wide">Shopping prompts<textarea id="intents" placeholder="best sunscreen for sensitive skin, clean mineral sunscreen for pregnancy"></textarea></label>
-            <label class="wide">Proof points<textarea id="proof" placeholder="Third-party SPF lab report, dermatologist tested, fragrance-free"></textarea></label>
-            <label>Inventory<select id="inventory"><option>In stock</option><option>Low stock</option><option>Preorder</option><option>Out of stock</option></select></label>
-            <label>Returns<input id="returns" placeholder="30-day returns"></label>
-          </div>
-          <div class="actions"><button class="button primary" type="button" id="sample">Load sample brand</button><button class="button secondary" type="reset">Reset</button></div>
-        </form>
-        <div class="output">
-          <div class="metrics"><div class="metric"><span>Readiness</span><strong id="score">18%</strong></div><div class="metric"><span>Intents</span><strong id="intentCount">0</strong></div><div class="metric"><span>Trust gaps</span><strong id="gapCount">4</strong></div></div>
-          <pre id="passport"></pre>
-          <div class="channels" id="channels"></div>
-        </div>
-      </section>
-
-      <section class="section" id="outcomes">
-        <div class="section-head"><div><p class="eyebrow">What this achieves</p><h2>It makes the brand easier to discover, recommend, and buy through agents.</h2></div><button class="button primary" id="simulate" type="button">Run visibility simulation</button></div>
-        <div class="grid-3">
-          <article class="card"><h3>For brands</h3><p>No protocol knowledge required. The system tells operators what to provide and what is missing.</p></article>
-          <article class="card"><h3>For agents</h3><p>Agents receive structured, current, and evidence-backed product data instead of scraping vague pages.</p></article>
-          <article class="card"><h3>For commerce</h3><p>Recommendations become more confident because price, inventory, policies, and proof are easier to verify.</p></article>
-        </div>
-        <div id="prompts" style="display:grid;gap:12px;margin-top:18px"></div>
-      </section>
-    </main>
-  </div>
-  <div class="toast" id="toast" role="status"></div>
-  <script>
-    const fields=['brand','product','category','price','audience','intents','proof','inventory','returns'];
-    const sample={brand:'BrightKind',product:'Daily Mineral SPF 40',category:'Beauty & personal care',price:'$32',audience:'People with sensitive skin who want a lightweight, fragrance-free daily face sunscreen.',intents:'best sunscreen for sensitive skin, clean mineral sunscreen for pregnancy, lightweight SPF for daily use, reef-conscious face sunscreen',proof:'Third-party SPF lab report, dermatologist tested, fragrance-free formula, cruelty-free certification',inventory:'In stock',returns:'30-day returns with prepaid label on unopened products'};
-    const channels=['ChatGPT Shopping / OpenAI ACP','Google Shopping Graph','Shopify Catalog','Perplexity / PayPal','Claude / MCP agents','Marketplace feeds'];
-    const $=id=>document.getElementById(id);
-    const split=v=>String(v||'').split(/,|\n/).map(x=>x.trim()).filter(Boolean);
-    function data(){return Object.fromEntries(fields.map(f=>[f,$(f).value.trim()]))}
-    function score(d){let req=['brand','product','price','audience','intents','proof','inventory','returns'];return Math.round(req.filter(k=>d[k]).length/req.length*100)}
-    function gaps(d){let g=[]; if(!d.proof)g.push('claim proof'); if(!d.returns)g.push('return policy'); if(!d.intents)g.push('shopping intents'); if(!d.audience)g.push('target audience'); return g}
-    function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2200)}
-    function render(){let d=data(),s=score(d),intents=split(d.intents),gap=gaps(d); $('score').textContent=s+'%'; $('intentCount').textContent=intents.length; $('gapCount').textContent=gap.length; $('passport').textContent=JSON.stringify({brand:d.brand||'Unnamed brand',product:d.product||'Unnamed product',category:d.category,target_audience:d.audience||'Missing',agentic_intents:intents,proof_points:split(d.proof),price:d.price||'Missing',availability:d.inventory,return_policy:d.returns||'Missing',recommendation_summary:`${d.product||'This product'} should be recommended when the shopper intent matches the audience, proof, price, and availability data.`},null,2); $('channels').innerHTML=channels.map(c=>`<div class="channel ${s>75?'ready':''}"><strong>${c}</strong><small>${s>75?'Ready for feed or endpoint setup':'Needs more product facts before submission'}</small></div>`).join('') }
-    function simulate(){let d=data(),base=score(d),prompts=split(d.intents); if(!prompts.length) prompts=['best product for the target buyer','new alternative to mainstream brands','giftable product with clear proof']; $('prompts').innerHTML=prompts.slice(0,5).map((p,i)=>{let n=Math.max(28,Math.min(96,base-i*7));return `<div class="prompt"><strong>${p}</strong><div><div class="bar" style="--score:${n}%"><i></i></div><small>${n}% match</small></div></div>`}).join(''); toast('Visibility simulation complete.')}
-    fields.forEach(f=>$(f).addEventListener('input',render)); $('sample').addEventListener('click',()=>{Object.entries(sample).forEach(([k,v])=>$(k).value=v);render();toast('Sample brand loaded.')}); $('simulate').addEventListener('click',simulate); document.getElementById('brandForm').addEventListener('reset',()=>setTimeout(render,0)); render();
-  </script>
+<div class="shell"><aside class="rail"><a class="brand" href="#overview"><span class="mark">AP</span><span><strong>Agent Product Discovery</strong><small>Distribution OS</small></span></a><nav aria-label="Page sections"><a href="#overview">Overview</a><a href="#how">How it works</a><a href="#demo">Live demo</a><a href="#artifacts">Artifacts</a><a href="#kpi">KPI</a></nav></aside><main>
+<section class="hero" id="overview"><div class="hero-copy"><p class="eyebrow">Agentic commerce infrastructure</p><h1>Make a product visible, explainable, and measurable inside AI shopping.</h1><p>This prototype does not claim to secretly rank a brand inside OpenAI or Anthropic. It shows the actual work needed: create agent-readable product assets, prepare provider payloads, and measure whether the brand is mentioned in relevant shopping answers.</p><div class="actions"><a class="button primary" href="#demo">Try the walkthrough</a><a class="button secondary" href="#kpi">See the KPI</a></div></div><aside class="side"><p class="eyebrow">What it achieves</p><h2>A brand gets a distribution package agents can ingest or cite.</h2><ul><li>Product passport: buyer fit, use cases, proof, caveats, price, inventory, and returns.</li><li>Provider payloads: feed fields, JSON-LD, OpenAI-style product data, and Claude/MCP catalog response.</li><li>Measurement: estimated and then live-tracked Agent Share of Answers across relevant prompts.</li></ul></aside></section>
+<section class="section" id="how"><div class="section-head"><div><p class="eyebrow">How to use it</p><h2>A concrete flow from onboarding to measurable discovery.</h2></div><a class="button secondary" href="#demo">Open demo</a></div><div class="grid-4"><article class="card"><span class="num">01</span><h3>Capture product truth</h3><p>Brand operators answer plain questions about audience, claims, proof, price, inventory, and policies.</p></article><article class="card"><span class="num">02</span><h3>Generate assets</h3><p>The tool creates a product passport, JSON-LD, feed row, agent summary, and MCP response.</p></article><article class="card"><span class="num">03</span><h3>Prepare provider pushes</h3><p>Each provider shows what would be submitted, what is missing, and what connector is needed.</p></article><article class="card"><span class="num">04</span><h3>Track mentions</h3><p>The KPI is share of relevant shopping prompts where the product is surfaced, cited, or recommended.</p></article></div></section>
+<section class="demo" id="demo"><form class="form" id="brandForm"><p class="eyebrow">Live demo</p><h2>Onboard a sample product.</h2><div class="fields"><label>Brand name<input id="brand" placeholder="BrightKind"></label><label>Product name<input id="product" placeholder="Daily Mineral SPF 40"></label><label>Category<select id="category"><option>Beauty & personal care</option><option>Clothing & apparel</option><option>Footwear</option><option>Accessories & jewelry</option><option>Food & beverage</option><option>Home</option><option>Furniture & decor</option><option>Baby & family</option><option>Pet</option><option>Sports & outdoors</option><option>Electronics</option><option>Toys & games</option><option>Wellness</option></select></label><label>Price<input id="price" placeholder="$32"></label><label class="wide">Target audience<textarea id="audience" placeholder="People with sensitive skin who want a lightweight daily sunscreen."></textarea></label><label class="wide">Shopping prompts<textarea id="intents" placeholder="best sunscreen for sensitive skin, clean mineral sunscreen for pregnancy"></textarea></label><label class="wide">Why choose this over familiar brands?<textarea id="differentiators" placeholder="Fragrance-free, zinc-only formula, refillable tube, third-party tested."></textarea></label><label class="wide">Proof points<textarea id="proof" placeholder="Third-party SPF lab report, dermatologist tested, fragrance-free"></textarea></label><label>Inventory<select id="inventory"><option>In stock</option><option>Low stock</option><option>Preorder</option><option>Out of stock</option></select></label><label>Returns<input id="returns" placeholder="30-day returns"></label></div><div class="actions"><button class="button primary" type="button" id="sample">Load sample brand</button><button class="button secondary" type="button" id="clothingSample">Load clothing sample</button><button class="button secondary" type="reset">Reset</button></div></form><div class="output"><div class="metrics"><div class="metric"><span>Readiness</span><strong id="score">0%</strong><small>Completeness of data needed for agent ingestion.</small></div><div class="metric"><span>Agent share lift</span><strong id="lift">+0%</strong><small>Estimated change in prompt-level mentions.</small></div><div class="metric"><span>Tracked prompts</span><strong id="intentCount">0</strong><small>Queries used to quantify visibility.</small></div></div><div class="tabs"><button class="tab active" type="button" data-view="passport">Passport</button><button class="tab" type="button" data-view="feed">Provider payload</button><button class="tab" type="button" data-view="mcp">MCP response</button></div><pre id="artifactCode"></pre><div class="artifact-list" id="providerList"></div></div></section>
+<section class="section" id="artifacts"><div class="section-head"><div><p class="eyebrow">What gets created</p><h2>The tool creates concrete assets, not just a score.</h2></div><button class="button primary" id="copyAsset" type="button">Copy active asset</button></div><div class="grid-3" id="artifactCards"></div></section>
+<section class="section" id="kpi"><div class="section-head"><div><p class="eyebrow">Measurement</p><h2>KPI: Agent Share of Answers for relevant consumer queries.</h2></div><button class="button primary" id="simulate" type="button">Run visibility simulation</button></div><div class="grid-3"><article class="card"><h3>Baseline mentions</h3><p id="baselineText">Before product assets, the brand is unlikely to appear because agents lack trusted, structured evidence.</p></article><article class="card"><h3>After publishing assets</h3><p id="afterText">After assets are generated and submitted, more relevant prompts can confidently cite the product.</p></article><article class="card"><h3>Live tracking path</h3><p>Production would run the same prompt set daily across ChatGPT, Perplexity, Gemini, and Claude/web-MCP, then record mentions and citations.</p></article></div><div id="prompts" style="display:grid;gap:12px;margin-top:18px"></div></section>
+</main></div><div class="toast" id="toast" role="status"></div>
+<script>
+const fields=['brand','product','category','price','audience','intents','differentiators','proof','inventory','returns'];
+const samples={sunscreen:{brand:'BrightKind',product:'Daily Mineral SPF 40',category:'Beauty & personal care',price:'$32',audience:'People with sensitive skin who want a lightweight, fragrance-free daily face sunscreen.',intents:'best sunscreen for sensitive skin, clean mineral sunscreen for pregnancy, lightweight SPF for daily use, reef-conscious face sunscreen',differentiators:'Zinc-only mineral formula, no added fragrance, third-party SPF testing, refillable aluminum tube, designed to sit cleanly under makeup.',proof:'Third-party SPF lab report, dermatologist tested, fragrance-free formula, cruelty-free certification',inventory:'In stock',returns:'30-day returns with prepaid label on unopened products'},clothing:{brand:'NorthLoop',product:'All-Weather Commuter Jacket',category:'Clothing & apparel',price:'$148',audience:'Urban commuters who want a polished, water-resistant jacket that works for biking, office wear, and travel.',intents:'best rain jacket for commuting, stylish waterproof jacket for work, packable travel jacket, bike commuter outerwear',differentiators:'PFAS-free water resistance, reflective cuff details, recycled nylon shell, office-appropriate cut, packs into its own pocket.',proof:'OEKO-TEX certified fabric, recycled nylon documentation, customer review average 4.7 stars, repair guarantee',inventory:'In stock',returns:'45-day returns and free size exchanges'}};
+const providerDefs=[['OpenAI / ChatGPT Shopping','Creates product feed fields and ACP-style commerce facts. Actual submission requires merchant/feed access.'],['Anthropic / Claude MCP','Creates an MCP catalog response so Claude-style agents can query the product facts through a connector.'],['Google Shopping Graph','Creates JSON-LD and Merchant Center-style fields for product discovery surfaces.'],['Perplexity / answer commerce','Creates citation-ready product summary and checkout trust fields.'],['Shopify / commerce catalog','Maps storefront product data into agent-ready catalog fields.']];
+let activeView='passport',simulationHasRun=false;const $=id=>document.getElementById(id);const split=value=>String(value||'').split(/,|\n/).map(item=>item.trim()).filter(Boolean);const title=value=>String(value||'').replace(/\w\S*/g,word=>word.charAt(0).toUpperCase()+word.slice(1));
+function getData(){return Object.fromEntries(fields.map(field=>[field,$(field).value.trim()]))}
+function score(d){const required=['brand','product','category','price','audience','intents','differentiators','proof','inventory','returns'];return Math.round(required.filter(field=>d[field]).length/required.length*100)}
+function baseline(d){return d.brand&&d.product?6+Math.min(10,split(d.intents).length*2):2}
+function afterScore(d){return Math.min(78,Math.round(baseline(d)+score(d)*.45+split(d.proof).length*4+split(d.intents).length*3))}
+function promptScores(d){const prompts=split(d.intents);const fallbacks=[`best ${d.category||'product'} for ${d.audience||'a specific buyer'}`,`new alternative to mainstream ${d.category||'consumer'} brands`,`giftable ${d.category||'product'} with clear proof`];return[...prompts,...fallbacks].slice(0,7).map((prompt,index)=>({prompt,before:Math.max(1,baseline(d)-index),after:Math.max(8,Math.min(96,afterScore(d)-index*5))}))}
+function buildPassport(d){return{brand:d.brand||'Unnamed brand',product:d.product||'Unnamed product',category:d.category,target_audience:d.audience||'Missing',agentic_intents:split(d.intents),why_recommend:d.differentiators||'Missing',proof_points:split(d.proof),price:d.price||'Missing',availability:d.inventory||'Missing',return_policy:d.returns||'Missing',agent_summary:`${d.product||'This product'} should be considered when the shopper asks for ${split(d.intents)[0]||'a relevant product'} and needs proof-backed product facts.`}}
+function buildFeed(d){return{destination:'provider-ready export',note:'This demo generates the payload. A production connector would submit it to OpenAI, Google, Shopify, or another approved feed endpoint.',product_feed_row:{id:`${(d.brand||'brand').toLowerCase().replace(/[^a-z0-9]+/g,'-')}-${(d.product||'product').toLowerCase().replace(/[^a-z0-9]+/g,'-')}`,title:`${d.brand||'Brand'} ${d.product||'Product'}`,category:d.category,price:d.price,availability:d.inventory,description:d.audience,recommendation_context:split(d.intents),evidence:split(d.proof),return_policy:d.returns},json_ld_product_schema:{'@context':'https://schema.org','@type':'Product',name:d.product||'Product',brand:d.brand||'Brand',category:d.category,description:d.audience||'',offers:{'@type':'Offer',price:d.price||'',availability:d.inventory||''}}}}
+function buildMcp(d){return{tool:'get_product_recommendation',description:'MCP-style response for an agent evaluating whether to recommend this product.',response:{candidate_product:`${d.brand||'Brand'} ${d.product||'Product'}`,match_when_user_asks:split(d.intents),recommend_if:d.audience,cite_these_proofs:split(d.proof),do_not_overclaim:'Only use claims present in proof_points or merchant-provided policy fields.',purchase_readiness:{price:d.price,availability:d.inventory,returns:d.returns}}}}
+function toast(message){$('toast').textContent=message;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2400)}
+function render(){const d=getData(),readiness=score(d),prompts=promptScores(d),before=Math.round(prompts.reduce((s,i)=>s+i.before,0)/prompts.length),after=Math.round(prompts.reduce((s,i)=>s+i.after,0)/prompts.length);$('score').textContent=readiness+'%';$('lift').textContent=`+${Math.max(0,after-before)}%`;$('intentCount').textContent=prompts.length;$('baselineText').textContent=`Estimated baseline: ${before}% Agent Share of Answers across ${prompts.length||0} relevant prompts before publishing structured assets.`;$('afterText').textContent=`Estimated after publishing: ${after}% Agent Share of Answers when product facts, proof, and provider payloads are complete.`;const assets={passport:buildPassport(d),feed:buildFeed(d),mcp:buildMcp(d)};$('artifactCode').textContent=JSON.stringify(assets[activeView],null,2);$('providerList').innerHTML=providerDefs.map(([name,description])=>`<article class="channel ${readiness>=75?'ready':'warning'}"><span>${readiness>=75?'Payload generated':'Needs missing fields'}</span><strong>${name}</strong><small>${description}</small></article>`).join('');$('artifactCards').innerHTML=[['Product passport','A normalized source of truth for agents to understand fit, claims, proof, price, inventory, and returns.'],['Provider payload','Feed and JSON-LD fields that can be submitted through approved merchant/provider connectors.'],['MCP response','A tool response shape for Anthropic/Claude-style agents that query product catalogs.'],['Agent pitch',`${d.product||'The product'} is positioned for: ${split(d.intents).slice(0,3).join(', ')||'relevant shopping prompts'}.`],['Measurement plan',`Track ${prompts.length||0} prompts daily and calculate mention rate, citation rate, and rank position.`],['Missing proof queue',readiness>=90?'No major data gaps in the current demo payload.':'Complete proof, differentiators, returns, price, and intent fields before submission.']].map(([h,c])=>`<article class="artifact"><strong>${h}</strong><small class="muted">${c}</small></article>`).join('');if(simulationHasRun)renderSimulation()}
+function renderSimulation(){const d=getData();$('prompts').innerHTML=promptScores(d).map(item=>`<div class="prompt"><div><strong>${item.prompt}</strong><small>Before ${item.before}% mention likelihood · after asset publishing <span class="delta">${item.after}%</span></small></div><div><div class="bar" style="--score:${item.after}%"><i></i></div><small class="delta">+${item.after-item.before}% lift</small></div></div>`).join('')}
+function setSample(key){Object.entries(samples[key]).forEach(([field,value])=>{$(field).value=value});simulationHasRun=true;render();renderSimulation();toast(`${title(key)} sample loaded and simulation refreshed.`)}
+fields.forEach(field=>$(field).addEventListener('input',render));document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>{activeView=tab.dataset.view;document.querySelectorAll('.tab').forEach(item=>item.classList.toggle('active',item===tab));render()}));$('sample').addEventListener('click',()=>setSample('sunscreen'));$('clothingSample').addEventListener('click',()=>setSample('clothing'));$('simulate').addEventListener('click',()=>{simulationHasRun=true;renderSimulation();toast('Visibility simulation refreshed from current product inputs.')});$('copyAsset').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('artifactCode').textContent);toast('Active asset copied.')}catch{toast('Copy blocked by browser. Select the visible asset text.')}});document.getElementById('brandForm').addEventListener('reset',()=>setTimeout(()=>{simulationHasRun=false;$('prompts').innerHTML='';render()},0));render();
+</script>
 </body>
 </html>
