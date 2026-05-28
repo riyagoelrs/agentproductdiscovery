@@ -1,40 +1,1645 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Agent Product Discovery | Emerging Brand Distribution</title>
-<meta name="description" content="A walkthrough and demo for helping emerging consumer brands become discoverable in AI shopping and agentic commerce flows." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agentic Shelf — AI visibility for emerging brands</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 <style>
-:root{--ink:#17202a;--muted:#667381;--line:#dce3ea;--blue:#2868d8;--green:#11a36b;--yellow:#e6a93a;--red:#d9504a;--charcoal:#223044}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:linear-gradient(180deg,#f8fafc 0%,#eef3f7 100%);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer}.shell{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}.rail{position:sticky;top:0;height:100vh;border-right:1px solid var(--line);background:rgba(255,255,255,.92);padding:24px}.brand{display:flex;gap:12px;align-items:center;margin-bottom:34px}.mark{display:grid;width:44px;height:44px;place-items:center;background:var(--charcoal);color:#fff;font-weight:800}.brand strong,.brand small{display:block}.brand small,.muted{color:var(--muted)}nav{display:grid;gap:8px}nav a{border-left:3px solid transparent;padding:11px 12px;color:#516070;font-weight:800}nav a:hover{border-color:var(--blue);background:#edf4ff;color:var(--blue)}main{display:grid;gap:22px;padding:36px;min-width:0}section,.card{border:1px solid var(--line);background:rgba(255,255,255,.97);box-shadow:0 12px 34px rgba(23,32,42,.07)}.hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:18px}.hero-copy,.side,.section,.form{padding:32px}.hero-copy{padding:44px}.hero h1{max-width:920px;margin:10px 0 18px;font-size:68px;line-height:.95;letter-spacing:0;overflow-wrap:break-word}.hero p,.side li,.card p,.note{color:var(--muted);line-height:1.5}.hero p{max-width:780px;font-size:18px}.eyebrow{margin:0;color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.04em;text-transform:uppercase}.side{display:flex;flex-direction:column;justify-content:flex-end}h2{margin:10px 0 0;font-size:36px;line-height:1.04;letter-spacing:0;overflow-wrap:break-word}h3{margin:0 0 8px;font-size:20px}.side ul{display:grid;gap:13px;padding:0;margin:24px 0 0;list-style:none}.side li{border-top:1px solid var(--line);padding-top:13px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.button{display:inline-flex;min-height:42px;align-items:center;justify-content:center;border:0;padding:0 16px;font-weight:800}.primary{background:var(--blue);color:#fff;box-shadow:0 10px 24px rgba(40,104,216,.24)}.secondary{border:1px solid var(--line);background:#fff;color:var(--ink)}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:22px}.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{box-shadow:none;padding:18px;min-height:168px}.num{display:grid;width:36px;height:36px;place-items:center;margin-bottom:22px;background:var(--charcoal);color:#fff;font-weight:900;font-size:12px}.demo{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.9fr);gap:18px;align-items:start}.form h2{margin-bottom:20px}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}label{display:grid;gap:7px;color:#344254;font-size:13px;font-weight:800}.wide{grid-column:span 2}input,textarea,select{width:100%;border:1px solid #cad5df;background:#fbfdff;color:var(--ink);outline:0;padding:12px}textarea{min-height:82px;resize:vertical}.output{display:grid;gap:14px}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.metric{border:1px solid var(--line);background:#fff;padding:16px}.metric span{color:var(--muted);font-size:11px;font-weight:900;text-transform:uppercase}.metric strong{display:block;margin-top:10px;font-size:34px}.metric small{color:var(--muted);line-height:1.35}pre{overflow:auto;max-height:430px;margin:0;border:1px solid #26364d;background:#121a26;color:#dce8f6;padding:16px;font-size:12px;line-height:1.55;white-space:pre-wrap}.tabs{display:flex;flex-wrap:wrap;gap:8px}.tab{border:1px solid var(--line);background:#fff;padding:9px 11px;color:#415062;font-weight:800}.tab.active{border-color:var(--blue);color:#fff;background:var(--blue)}.channel,.artifact{display:grid;gap:8px;border:1px solid var(--line);padding:14px;background:#fbfdff}.channel.ready{border-color:rgba(17,163,107,.45);background:#f3fbf7}.channel.warning{border-color:rgba(230,169,58,.55);background:#fffaf0}.channel span{color:var(--muted);font-size:11px;font-weight:900;text-transform:uppercase}.prompt{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:14px;align-items:center;border:1px solid var(--line);padding:14px;background:#fff}.prompt small{color:var(--muted)}.bar{height:10px;background:#e6edf3;overflow:hidden}.bar i{display:block;width:var(--score);height:100%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))}.delta{color:var(--green);font-weight:900}.artifact-list{display:grid;gap:12px}.toast{position:fixed;right:18px;bottom:18px;max-width:360px;transform:translateY(12px);opacity:0;border:1px solid #bcd0e3;background:#fff;padding:13px 15px;font-weight:800;box-shadow:0 18px 52px rgba(23,32,42,.12);transition:.18s ease}.toast.show{transform:translateY(0);opacity:1}@media(max-width:1120px){.shell{grid-template-columns:1fr}.rail{position:static;height:auto}.rail nav{display:flex;overflow-x:auto}.rail nav a{flex:0 0 auto}.hero,.demo{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}.hero h1{font-size:54px}}@media(max-width:760px){main{padding:18px}.rail{padding:18px}.hero-copy,.side,.section,.form{padding:22px}.hero h1{font-size:42px}h2{font-size:30px}.grid-4,.grid-3,.fields,.metrics{grid-template-columns:1fr}.wide{grid-column:auto}.section-head{display:grid}.prompt{grid-template-columns:1fr}.button{width:100%}}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #17202a;
+  --ink2: #334050;
+  --muted: #667381;
+  --line: #dce3ea;
+  --bg: #f4f7fa;
+  --surface: #ffffff;
+  --blue: #2868d8;
+  --blue-light: #eef3fd;
+  --green: #11a36b;
+  --green-light: #e8f7f1;
+  --yellow: #e6a93a;
+  --yellow-light: #fdf6e8;
+  --red: #d9504a;
+  --red-light: #fdf0ef;
+  --purple: #7c4dff;
+  --purple-light: #f3f0ff;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.05);
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 15px; line-height: 1.6; background: var(--bg); color: var(--ink); }
+
+/* ── Layout ── */
+.layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+/* ── Sidebar ── */
+.sidebar {
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  background: var(--surface); border-right: 1px solid var(--line);
+  padding: 24px 0; display: flex; flex-direction: column; gap: 0;
+}
+.sidebar-logo {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 20px 20px; border-bottom: 1px solid var(--line);
+}
+.logo-mark {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: var(--ink); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 900; letter-spacing: -.5px; flex-shrink: 0;
+}
+.logo-text { font-size: 14px; font-weight: 700; color: var(--ink); }
+.logo-sub { font-size: 11px; color: var(--muted); }
+
+nav { padding: 16px 12px; flex: 1; }
+nav a {
+  display: flex; align-items: center; gap: 9px; padding: 9px 10px;
+  border-radius: 7px; color: var(--muted); font-size: 13.5px; font-weight: 500;
+  text-decoration: none; transition: all .15s;
+}
+nav a:hover { background: var(--bg); color: var(--ink); }
+nav a.active { background: var(--blue-light); color: var(--blue); font-weight: 600; }
+nav a .icon { font-size: 16px; width: 20px; text-align: center; flex-shrink: 0; }
+
+.sidebar-auth {
+  margin: 0 12px 16px; padding: 14px; border-radius: var(--radius);
+  background: var(--bg); border: 1px solid var(--line);
+}
+.auth-logged-out .auth-label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; }
+.auth-email-input {
+  width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 7px;
+  font-size: 13px; font-family: inherit; background: var(--surface);
+  color: var(--ink); margin-bottom: 8px;
+}
+.auth-email-input:focus { outline: none; border-color: var(--blue); }
+.btn-magic { width: 100%; }
+
+.auth-logged-in .auth-email { font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 6px; word-break: break-all; }
+.auth-logged-in .auth-since { font-size: 11px; color: var(--muted); margin-bottom: 10px; }
+.auth-logged-in .btn-logout { width: 100%; font-size: 12px; padding: 6px; }
+
+/* ── Main ── */
+main { padding: 48px 56px; max-width: 920px; }
+section { margin-bottom: 72px; }
+
+/* ── Typography ── */
+h1 { font-size: clamp(36px,5vw,60px); font-weight: 900; letter-spacing: -1.5px; line-height: 1.07; color: var(--ink); }
+h2 { font-size: 28px; font-weight: 800; letter-spacing: -.5px; color: var(--ink); margin-bottom: 8px; }
+h3 { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.eyebrow { font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.lead { font-size: 18px; color: var(--muted); line-height: 1.7; margin-top: 14px; max-width: 600px; }
+.section-sub { color: var(--muted); font-size: 15px; margin-bottom: 28px; max-width: 560px; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 10px 18px; border-radius: 8px; font-size: 13.5px; font-weight: 600;
+  font-family: inherit; cursor: pointer; border: none; transition: all .15s; text-decoration: none;
+}
+.btn-primary { background: var(--blue); color: #fff; }
+.btn-primary:hover { background: #1f54c0; }
+.btn-secondary { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+.btn-secondary:hover { background: var(--bg); border-color: #b0bec8; }
+.btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+.btn-ghost:hover { color: var(--ink); background: var(--bg); }
+.btn-sm { padding: 7px 13px; font-size: 12.5px; }
+.btn-danger { background: var(--red-light); color: var(--red); border: 1px solid #f3c5c3; }
+.btn-danger:hover { background: #fce8e7; }
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+
+/* ── Cards ── */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+.card-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); }
+.card-grid-2 { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+
+/* ── Hero ── */
+.hero { padding: 56px 0 24px; }
+.hero-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px;
+  border-radius: 20px; font-size: 12px; font-weight: 600;
+}
+.badge-blue { background: var(--blue-light); color: var(--blue); }
+.badge-green { background: var(--green-light); color: var(--green); }
+.badge-yellow { background: var(--yellow-light); color: #b07d10; }
+.badge-purple { background: var(--purple-light); color: var(--purple); }
+
+/* ── How it works ── */
+.steps { display: grid; gap: 14px; }
+.step { display: flex; gap: 16px; align-items: flex-start; }
+.step-num {
+  width: 30px; height: 30px; border-radius: 50%; background: var(--ink);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; flex-shrink: 0; margin-top: 2px;
+}
+
+/* ── Form ── */
+.form-grid { display: grid; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-row-2 { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--ink2); }
+.form-hint { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+.form-input, .form-select, .form-textarea {
+  padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px;
+  font-size: 14px; font-family: inherit; background: var(--surface); color: var(--ink);
+  transition: border-color .15s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(40,104,216,.1);
+}
+.form-textarea { resize: vertical; min-height: 76px; }
+.form-section-title {
+  font-size: 11px; font-weight: 900; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--muted); padding: 6px 0 10px; border-bottom: 1px solid var(--line);
+  margin-bottom: 4px; grid-column: 1 / -1;
+}
+
+/* ── Metrics row ── */
+.metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+.metric-card { text-align: center; padding: 20px 16px; }
+.metric-value { font-size: 36px; font-weight: 900; letter-spacing: -1px; color: var(--ink); }
+.metric-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-top: 4px; }
+.metric-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* ── Tabs ── */
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--bg); border-radius: 9px; border: 1px solid var(--line); width: fit-content; margin-bottom: 20px; }
+.tab {
+  padding: 8px 16px; border-radius: 7px; font-size: 13px; font-weight: 600;
+  cursor: pointer; color: var(--muted); border: none; background: transparent;
+  font-family: inherit; transition: all .15s;
+}
+.tab.active { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+
+/* ── Code output ── */
+.output-wrap { position: relative; }
+.output-box {
+  background: #1a1f2e; color: #c9d5e0; font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 12.5px; line-height: 1.7; padding: 20px; border-radius: var(--radius);
+  overflow-x: auto; white-space: pre-wrap; word-break: break-word; max-height: 380px; overflow-y: auto;
+}
+.copy-btn {
+  position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,.1);
+  color: #c9d5e0; border: 1px solid rgba(255,255,255,.15); border-radius: 6px;
+  padding: 5px 11px; font-size: 12px; font-family: inherit; cursor: pointer; font-weight: 600;
+}
+.copy-btn:hover { background: rgba(255,255,255,.18); }
+
+/* ── Platform channels ── */
+.platform-grid { display: grid; gap: 12px; }
+.platform-card {
+  border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+}
+.platform-header {
+  display: flex; align-items: center; gap: 12px; padding: 14px 18px;
+  cursor: pointer; user-select: none; background: var(--surface);
+}
+.platform-header:hover { background: var(--bg); }
+.platform-logo { font-size: 20px; width: 32px; text-align: center; flex-shrink: 0; }
+.platform-info { flex: 1; min-width: 0; }
+.platform-name { font-size: 14px; font-weight: 700; color: var(--ink); }
+.platform-desc { font-size: 12px; color: var(--muted); margin-top: 1px; }
+.platform-status {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+.status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.status-ready .status-dot { background: var(--green); }
+.status-ready { color: var(--green); }
+.status-warning .status-dot { background: var(--yellow); }
+.status-warning { color: #b07d10; }
+.status-not-started .status-dot { background: #b0bec8; }
+.status-not-started { color: var(--muted); }
+.platform-chevron { color: var(--muted); transition: transform .2s; flex-shrink: 0; }
+.platform-card.open .platform-chevron { transform: rotate(180deg); }
+
+.checklist-body { display: none; padding: 0 18px 16px; background: var(--surface); border-top: 1px solid var(--line); }
+.platform-card.open .checklist-body { display: block; }
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--line);
+}
+.checklist-item:last-child { border-bottom: none; }
+.checklist-item input[type=checkbox] { margin-top: 3px; accent-color: var(--blue); width: 15px; height: 15px; flex-shrink: 0; cursor: pointer; }
+.checklist-item label { font-size: 13.5px; color: var(--ink2); cursor: pointer; }
+.checklist-item .check-hint { font-size: 12px; color: var(--muted); display: block; margin-top: 2px; }
+.checklist-item.done label { text-decoration: line-through; color: var(--muted); }
+
+/* ── Dashboard ── */
+.dashboard-wrap { display: none; }
+.dashboard-wrap.visible { display: block; }
+
+.score-hero { display: flex; align-items: center; gap: 40px; margin-bottom: 32px; flex-wrap: wrap; }
+.score-ring-wrap { position: relative; width: 140px; height: 140px; flex-shrink: 0; }
+.score-ring-wrap canvas { width: 140px !important; height: 140px !important; }
+.score-ring-center {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; pointer-events: none;
+}
+.score-ring-value { font-size: 34px; font-weight: 900; color: var(--ink); letter-spacing: -1px; line-height: 1; }
+.score-ring-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-top: 3px; }
+.score-summary { flex: 1; min-width: 220px; }
+.score-summary h3 { font-size: 22px; margin-bottom: 6px; }
+.score-summary p { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+.visibility-compare { display: flex; gap: 20px; flex-wrap: wrap; }
+.vis-item { }
+.vis-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.vis-value { font-size: 28px; font-weight: 900; letter-spacing: -1px; }
+.vis-value.before { color: var(--muted); }
+.vis-value.after { color: var(--green); }
+.vis-sub { font-size: 12px; color: var(--muted); }
+
+.chart-card { margin-bottom: 24px; }
+.chart-card canvas { max-height: 220px; }
+
+.platform-score-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 12px; margin-bottom: 24px; }
+.platform-score-card { text-align: center; padding: 16px 12px; }
+.ps-logo { font-size: 24px; margin-bottom: 6px; }
+.ps-name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.ps-score { font-size: 26px; font-weight: 900; color: var(--ink); letter-spacing: -.5px; }
+.ps-bar-wrap { height: 4px; background: var(--line); border-radius: 2px; margin-top: 8px; }
+.ps-bar { height: 4px; border-radius: 2px; background: var(--blue); transition: width .6s; }
+
+.keyword-table { width: 100%; border-collapse: collapse; }
+.keyword-table th { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); text-align: left; padding: 8px 12px; border-bottom: 2px solid var(--line); }
+.keyword-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+.keyword-table tr:last-child td { border-bottom: none; }
+.kw-query { color: var(--ink); font-weight: 500; }
+.kw-before { color: var(--muted); font-weight: 600; }
+.kw-after { color: var(--green); font-weight: 700; }
+.kw-lift { font-weight: 700; }
+.kw-lift.positive { color: var(--green); }
+.kw-bar-cell { width: 100px; }
+.kw-bar-outer { height: 6px; background: var(--line); border-radius: 3px; position: relative; }
+.kw-bar-before { position: absolute; height: 6px; background: #b0bec8; border-radius: 3px; }
+.kw-bar-after { position: absolute; height: 6px; background: var(--green); border-radius: 3px; opacity: .7; }
+
+.suggestions-list { display: flex; flex-direction: column; gap: 10px; }
+.suggestion-item { display: flex; gap: 12px; align-items: flex-start; padding: 14px; background: var(--yellow-light); border: 1px solid #f3dfa3; border-radius: 8px; }
+.suggestion-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.suggestion-text { font-size: 13.5px; color: var(--ink2); line-height: 1.5; }
+
+/* ── Simulation notice ── */
+.sim-notice {
+  display: flex; gap: 10px; align-items: flex-start; padding: 12px 16px;
+  background: var(--purple-light); border: 1px solid #c4b5fd; border-radius: 8px; margin-bottom: 24px;
+  font-size: 13px; color: var(--ink2);
+}
+.sim-notice-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* ── Artifacts ── */
+.artifact-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); }
+.artifact-card { padding: 18px; }
+.artifact-icon { font-size: 22px; margin-bottom: 10px; }
+.artifact-name { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.artifact-desc { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+/* ── Toast ── */
+.toast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--ink); color: #fff; padding: 11px 22px; border-radius: 24px;
+  font-size: 14px; font-weight: 600; opacity: 0; pointer-events: none; transition: all .25s;
+  z-index: 999; white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── Dev magic-link banner ── */
+.dev-banner {
+  display: none; position: fixed; top: 0; left: 0; right: 0;
+  background: #1a1f2e; color: #c9d5e0; padding: 10px 20px;
+  font-size: 13px; font-family: 'SF Mono', monospace; z-index: 1000;
+  text-align: center;
+}
+.dev-banner.show { display: block; }
+.dev-banner a { color: #7eb3ff; }
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; flex-direction: row; flex-wrap: wrap; padding: 14px; }
+  .sidebar-logo { border-bottom: none; padding: 0; }
+  nav { padding: 0; display: flex; flex-wrap: wrap; flex: unset; }
+  nav a { padding: 7px 10px; }
+  main { padding: 32px 24px; }
+}
+@media (max-width: 700px) {
+  main { padding: 24px 16px; }
+  .form-row-2 { grid-template-columns: 1fr; }
+  .metrics-row { grid-template-columns: 1fr; }
+  .card-grid-2 { grid-template-columns: 1fr; }
+  .score-hero { flex-direction: column; }
+}
 </style>
 </head>
 <body>
-<div class="shell"><aside class="rail"><a class="brand" href="#overview"><span class="mark">AP</span><span><strong>Agent Product Discovery</strong><small>Distribution OS</small></span></a><nav aria-label="Page sections"><a href="#overview">Overview</a><a href="#how">How it works</a><a href="#demo">Live demo</a><a href="#artifacts">Artifacts</a><a href="#kpi">KPI</a></nav></aside><main>
-<section class="hero" id="overview"><div class="hero-copy"><p class="eyebrow">Agentic commerce infrastructure</p><h1>Make a product visible, explainable, and measurable inside AI shopping.</h1><p>This prototype does not claim to secretly rank a brand inside OpenAI or Anthropic. It shows the actual work needed: create agent-readable product assets, prepare provider payloads, and measure whether the brand is mentioned in relevant shopping answers.</p><div class="actions"><a class="button primary" href="#demo">Try the walkthrough</a><a class="button secondary" href="#kpi">See the KPI</a></div></div><aside class="side"><p class="eyebrow">What it achieves</p><h2>A brand gets a distribution package agents can ingest or cite.</h2><ul><li>Product passport: buyer fit, use cases, proof, caveats, price, inventory, and returns.</li><li>Provider payloads: feed fields, JSON-LD, OpenAI-style product data, and Claude/MCP catalog response.</li><li>Measurement: estimated and then live-tracked Agent Share of Answers across relevant prompts.</li></ul></aside></section>
-<section class="section" id="how"><div class="section-head"><div><p class="eyebrow">How to use it</p><h2>A concrete flow from onboarding to measurable discovery.</h2></div><a class="button secondary" href="#demo">Open demo</a></div><div class="grid-4"><article class="card"><span class="num">01</span><h3>Capture product truth</h3><p>Brand operators answer plain questions about audience, claims, proof, price, inventory, and policies.</p></article><article class="card"><span class="num">02</span><h3>Generate assets</h3><p>The tool creates a product passport, JSON-LD, feed row, agent summary, and MCP response.</p></article><article class="card"><span class="num">03</span><h3>Prepare provider pushes</h3><p>Each provider shows what would be submitted, what is missing, and what connector is needed.</p></article><article class="card"><span class="num">04</span><h3>Track mentions</h3><p>The KPI is share of relevant shopping prompts where the product is surfaced, cited, or recommended.</p></article></div></section>
-<section class="demo" id="demo"><form class="form" id="brandForm"><p class="eyebrow">Live demo</p><h2>Onboard a sample product.</h2><div class="fields"><label>Brand name<input id="brand" placeholder="BrightKind"></label><label>Product name<input id="product" placeholder="Daily Mineral SPF 40"></label><label>Category<select id="category"><option>Beauty & personal care</option><option>Clothing & apparel</option><option>Footwear</option><option>Accessories & jewelry</option><option>Food & beverage</option><option>Home</option><option>Furniture & decor</option><option>Baby & family</option><option>Pet</option><option>Sports & outdoors</option><option>Electronics</option><option>Toys & games</option><option>Wellness</option></select></label><label>Price<input id="price" placeholder="$32"></label><label class="wide">Target audience<textarea id="audience" placeholder="People with sensitive skin who want a lightweight daily sunscreen."></textarea></label><label class="wide">Shopping prompts<textarea id="intents" placeholder="best sunscreen for sensitive skin, clean mineral sunscreen for pregnancy"></textarea></label><label class="wide">Why choose this over familiar brands?<textarea id="differentiators" placeholder="Fragrance-free, zinc-only formula, refillable tube, third-party tested."></textarea></label><label class="wide">Proof points<textarea id="proof" placeholder="Third-party SPF lab report, dermatologist tested, fragrance-free"></textarea></label><label>Inventory<select id="inventory"><option>In stock</option><option>Low stock</option><option>Preorder</option><option>Out of stock</option></select></label><label>Returns<input id="returns" placeholder="30-day returns"></label></div><div class="actions"><button class="button primary" type="button" id="sample">Load sample brand</button><button class="button secondary" type="button" id="clothingSample">Load clothing sample</button><button class="button secondary" type="reset">Reset</button></div></form><div class="output"><div class="metrics"><div class="metric"><span>Readiness</span><strong id="score">0%</strong><small>Completeness of data needed for agent ingestion.</small></div><div class="metric"><span>Agent share lift</span><strong id="lift">+0%</strong><small>Estimated change in prompt-level mentions.</small></div><div class="metric"><span>Tracked prompts</span><strong id="intentCount">0</strong><small>Queries used to quantify visibility.</small></div></div><div class="tabs"><button class="tab active" type="button" data-view="passport">Passport</button><button class="tab" type="button" data-view="feed">Provider payload</button><button class="tab" type="button" data-view="mcp">MCP response</button></div><pre id="artifactCode"></pre><div class="artifact-list" id="providerList"></div></div></section>
-<section class="section" id="artifacts"><div class="section-head"><div><p class="eyebrow">What gets created</p><h2>The tool creates concrete assets, not just a score.</h2></div><button class="button primary" id="copyAsset" type="button">Copy active asset</button></div><div class="grid-3" id="artifactCards"></div></section>
-<section class="section" id="kpi"><div class="section-head"><div><p class="eyebrow">Measurement</p><h2>KPI: Agent Share of Answers for relevant consumer queries.</h2></div><button class="button primary" id="simulate" type="button">Run visibility simulation</button></div><div class="grid-3"><article class="card"><h3>Baseline mentions</h3><p id="baselineText">Before product assets, the brand is unlikely to appear because agents lack trusted, structured evidence.</p></article><article class="card"><h3>After publishing assets</h3><p id="afterText">After assets are generated and submitted, more relevant prompts can confidently cite the product.</p></article><article class="card"><h3>Live tracking path</h3><p>Production would run the same prompt set daily across ChatGPT, Perplexity, Gemini, and Claude/web-MCP, then record mentions and citations.</p></article></div><div id="prompts" style="display:grid;gap:12px;margin-top:18px"></div></section>
-</main></div><div class="toast" id="toast" role="status"></div>
+
+<div class="dev-banner" id="devBanner">
+  📧 Dev mode — magic link: <a id="devLink" href="#" target="_blank">click to open</a>
+  &nbsp;|&nbsp; Email preview: <a id="devPreview" href="#" target="_blank">Ethereal inbox</a>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="layout">
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">AS</div>
+      <div>
+        <div class="logo-text">Agentic Shelf</div>
+        <div class="logo-sub">AI visibility for brands</div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#overview" class="active"><span class="icon">◎</span> Overview</a>
+      <a href="#how"><span class="icon">⬡</span> How it works</a>
+      <a href="#demo"><span class="icon">⚡</span> Brand profile</a>
+      <a href="#checklist"><span class="icon">✓</span> Platform actions</a>
+      <a href="#dashboard"><span class="icon">📈</span> Dashboard</a>
+      <a href="#assets"><span class="icon">⬗</span> Assets</a>
+    </nav>
+
+    <!-- Auth panel -->
+    <div class="sidebar-auth">
+      <div class="auth-logged-out" id="authLoggedOut">
+        <div class="auth-label">Save your profile &amp; track progress</div>
+        <input type="email" class="auth-email-input" id="authEmail" placeholder="your@email.com">
+        <button class="btn btn-primary btn-sm btn-magic" onclick="sendMagicLink()">Send sign-in link →</button>
+      </div>
+      <div class="auth-logged-in" id="authLoggedIn" style="display:none">
+        <div class="auth-email" id="authUserEmail">—</div>
+        <div class="auth-since" id="authUserSince">Member since —</div>
+        <button class="btn btn-ghost btn-logout" onclick="logout()">Sign out</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── Main ── -->
+  <main>
+
+    <!-- Overview -->
+    <section id="overview" class="hero">
+      <div class="eyebrow">Agentic commerce · AI search visibility</div>
+      <h1>Get your brand recommended<br>by AI shopping agents</h1>
+      <p class="lead">Consumers are asking Claude, ChatGPT, Perplexity, and Gemini to recommend products — not Googling. Agentic Shelf turns your brand into a structured asset these agents actually read, cite, and recommend.</p>
+      <div class="hero-badges">
+        <span class="badge badge-blue">📊 AI visibility scoring</span>
+        <span class="badge badge-green">✓ Per-platform checklists</span>
+        <span class="badge badge-yellow">⚡ Schema.org + JSON-LD output</span>
+        <span class="badge badge-purple">📈 Mention tracking over time</span>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how">
+      <div class="eyebrow">Process</div>
+      <h2>How it works</h2>
+      <p class="section-sub">Four steps from invisible to recommended.</p>
+
+      <div class="card-grid" style="grid-template-columns:1fr 1fr;gap:14px">
+        <div class="card">
+          <div class="eyebrow" style="color:var(--blue)">Step 1</div>
+          <h3>Answer the brand questionnaire</h3>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.6">Tell us who your buyer is, what shopping queries you want to win, what makes you different, and what proof backs your claims. More detail = higher score.</p>
+        </div>
+        <div class="card">
+          <div class="eyebrow" style="color:var(--blue)">Step 2</div>
+          <h3>Get your AI-ready asset pack</h3>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.6">We generate a product passport, schema.org JSON-LD to embed in your site, a provider-ready product feed row, and an MCP tool response shape for Claude integration.</p>
+        </div>
+        <div class="card">
+          <div class="eyebrow" style="color:var(--blue)">Step 3</div>
+          <h3>Complete per-platform action items</h3>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.6">Each AI shopping platform has specific submission requirements. We give you a step-by-step checklist for Google, OpenAI/Bing, Perplexity, Claude, and Shopify.</p>
+        </div>
+        <div class="card">
+          <div class="eyebrow" style="color:var(--blue)">Step 4</div>
+          <h3>Measure your AI visibility lift</h3>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.6">Your dashboard tracks AI Visibility Score over time. Once you add API keys, we run real daily queries across AI engines and show your actual mention rate per keyword.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand profile form -->
+    <section id="demo">
+      <div class="eyebrow">Brand profile</div>
+      <h2>Build your product passport</h2>
+      <p class="section-sub">Complete every field for the highest AI Visibility Score. All fields feed directly into your generated assets and measurement score.</p>
+
+      <div style="display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-sm" onclick="loadSample('sunscreen')">Load sunscreen sample</button>
+        <button class="btn btn-secondary btn-sm" onclick="loadSample('jacket')">Load jacket sample</button>
+        <button class="btn btn-ghost btn-sm" onclick="resetForm()">Reset</button>
+      </div>
+
+      <div class="card" style="margin-bottom:24px">
+        <div class="form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="form-section-title">Core identity</div>
+
+          <div class="form-group">
+            <label class="form-label">Brand name *</label>
+            <input type="text" class="form-input" id="f-brand" placeholder="BrightKind" oninput="render()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Product name *</label>
+            <input type="text" class="form-input" id="f-product" placeholder="Daily Mineral SPF 40" oninput="render()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category *</label>
+            <select class="form-select" id="f-category" onchange="render()">
+              <option value="">Select category…</option>
+              <option>Beauty &amp; personal care</option>
+              <option>Clothing &amp; apparel</option>
+              <option>Footwear</option>
+              <option>Accessories &amp; jewelry</option>
+              <option>Food &amp; beverage</option>
+              <option>Home &amp; furniture</option>
+              <option>Baby &amp; family</option>
+              <option>Pet</option>
+              <option>Sports &amp; outdoors</option>
+              <option>Electronics</option>
+              <option>Toys &amp; games</option>
+              <option>Wellness &amp; supplements</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Price *</label>
+            <input type="text" class="form-input" id="f-price" placeholder="$32" oninput="render()">
+          </div>
+
+          <div class="form-section-title">Web presence</div>
+
+          <div class="form-group">
+            <label class="form-label">Brand website URL</label>
+            <input type="url" class="form-input" id="f-url" placeholder="https://brightkind.co" oninput="render()">
+            <span class="form-hint">Used in JSON-LD markup — helps AI crawlers find your site</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Product page URL</label>
+            <input type="url" class="form-input" id="f-productUrl" placeholder="https://brightkind.co/spf40" oninput="render()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Average rating</label>
+            <input type="number" class="form-input" id="f-rating" placeholder="4.7" min="1" max="5" step="0.1" oninput="render()">
+            <span class="form-hint">1–5 scale — included in schema.org AggregateRating</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Number of reviews</label>
+            <input type="number" class="form-input" id="f-reviewCount" placeholder="312" min="0" oninput="render()">
+          </div>
+
+          <div class="form-section-title">Audience &amp; intent</div>
+
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Who is your buyer? *</label>
+            <textarea class="form-textarea" id="f-audience" placeholder="Adults with sensitive skin who want daily SPF that won't clog pores, works under makeup, and is safe during pregnancy." oninput="render()"></textarea>
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Shopping intents to win *</label>
+            <textarea class="form-textarea" id="f-intents" placeholder="Sensitive skin sunscreen&#10;Pregnancy-safe SPF&#10;Reef-safe sunscreen for daily use&#10;Fragrance-free face sunscreen&#10;Mineral SPF under makeup" oninput="render()" style="min-height:96px"></textarea>
+            <span class="form-hint">One per line or comma-separated. These are the exact queries you want AI engines to recommend you for. Be specific — "reef-safe sunscreen for sensitive skin" beats "sunscreen".</span>
+          </div>
+
+          <div class="form-section-title">Differentiation &amp; proof</div>
+
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Why choose you over familiar brands? *</label>
+            <textarea class="form-textarea" id="f-differentiators" placeholder="Zinc-only formula (no chemical filters), refillable tube to cut plastic waste, compatible with all skin tones, third-party tested for reef safety." oninput="render()"></textarea>
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Proof points *</label>
+            <textarea class="form-textarea" id="f-proof" placeholder="Dermatologist-tested (board-certified, 2024)&#10;Hawaii reef-safe certified&#10;EWG Verified&#10;Fragrance-free (IFRA certified)&#10;4.8 stars from 400+ reviews" oninput="render()" style="min-height:96px"></textarea>
+            <span class="form-hint">One per line. Specific, verifiable claims — lab results, certifications, review scores, clinical tests. Vague claims get lower trust scores.</span>
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Third-party certifications</label>
+            <input type="text" class="form-input" id="f-certifications" placeholder="EWG Verified, COSMOS Organic, OEKO-TEX, B Corp, cruelty-free (Leaping Bunny), NSF" oninput="render()">
+            <span class="form-hint">Comma-separated. Certifications heavily boost trust scores across all AI platforms.</span>
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Who is this NOT for?</label>
+            <textarea class="form-textarea" id="f-notFor" placeholder="Not ideal for people who want a tinted formula or prefer chemical SPF filters for a lighter feel." oninput="render()" style="min-height:60px"></textarea>
+            <span class="form-hint">AI agents value honesty — disclosing non-ideal buyers actually increases recommendation accuracy and trust.</span>
+          </div>
+
+          <div class="form-section-title">Logistics &amp; policy</div>
+
+          <div class="form-group">
+            <label class="form-label">Inventory status *</label>
+            <select class="form-select" id="f-inventory" onchange="render()">
+              <option value="">Select…</option>
+              <option>In stock</option>
+              <option>Low stock</option>
+              <option>Preorder</option>
+              <option>Out of stock</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Shipping speed</label>
+            <input type="text" class="form-input" id="f-shipping" placeholder="2–4 business days" oninput="render()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Return policy *</label>
+            <input type="text" class="form-input" id="f-returns" placeholder="30-day returns, prepaid label" oninput="render()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Geographic availability</label>
+            <input type="text" class="form-input" id="f-geography" placeholder="US, Canada, UK, EU" oninput="render()">
+          </div>
+
+          <div class="form-section-title">Sustainability &amp; materials</div>
+
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Key ingredients or materials</label>
+            <input type="text" class="form-input" id="f-ingredients" placeholder="Zinc oxide 20%, non-nano, hyaluronic acid, vitamin E, squalane" oninput="render()">
+            <span class="form-hint">Buyers often filter by ingredient — AI agents parse these for "contains X" queries.</span>
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Sustainability features</label>
+            <textarea class="form-textarea" id="f-sustainability" placeholder="Refillable aluminium tube, FSC-certified packaging, carbon-neutral shipping via EcoCart, 1% of revenue to reef restoration." oninput="render()" style="min-height:60px"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Metrics -->
+      <div class="metrics-row" id="metricsRow" style="display:none">
+        <div class="card metric-card">
+          <div class="metric-value" id="mReadiness">—</div>
+          <div class="metric-label">Profile readiness</div>
+          <div class="metric-sub">of required fields complete</div>
+        </div>
+        <div class="card metric-card">
+          <div class="metric-value" id="mBefore" style="color:var(--muted)">—</div>
+          <div class="metric-label">Mention likelihood</div>
+          <div class="metric-sub">without structured assets</div>
+        </div>
+        <div class="card metric-card">
+          <div class="metric-value" id="mAfter" style="color:var(--green)">—</div>
+          <div class="metric-label">Projected mention rate</div>
+          <div class="metric-sub">after publishing assets</div>
+        </div>
+      </div>
+
+      <!-- Asset tabs -->
+      <div id="assetSection" style="display:none">
+        <div class="tabs">
+          <button class="tab active" onclick="switchTab('passport',this)">Passport</button>
+          <button class="tab" onclick="switchTab('feed',this)">Provider payload</button>
+          <button class="tab" onclick="switchTab('mcp',this)">MCP response</button>
+          <button class="tab" onclick="switchTab('jsonld',this)">JSON-LD ← embed this</button>
+        </div>
+        <div class="output-wrap">
+          <pre class="output-box" id="outputBox"></pre>
+          <button class="copy-btn" onclick="copyAsset()">Copy</button>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-primary" id="saveBtn" onclick="saveProfile()" disabled>Save &amp; measure →</button>
+        <button class="btn btn-secondary" onclick="runSimulation()">Preview score</button>
+        <span style="font-size:12px;color:var(--muted);align-self:center" id="saveHint">Sign in to save progress and track over time</span>
+      </div>
+    </section>
+
+    <!-- Platform checklists -->
+    <section id="checklist">
+      <div class="eyebrow">Action items</div>
+      <h2>Per-platform submission checklist</h2>
+      <p class="section-sub">Each AI shopping platform has different submission requirements. Complete these to get your product indexed. Each checked item increases your AI Visibility Score.</p>
+
+      <div class="platform-grid" id="platformGrid">
+
+        <!-- Google Shopping Graph -->
+        <div class="platform-card" id="platform-google">
+          <div class="platform-header" onclick="togglePlatform('google')">
+            <div class="platform-logo">🔍</div>
+            <div class="platform-info">
+              <div class="platform-name">Google Shopping Graph</div>
+              <div class="platform-desc">Powers Gemini shopping + Google Shopping tab</div>
+            </div>
+            <div class="platform-status status-not-started" id="status-google"><span class="status-dot"></span><span>0 / 6</span></div>
+            <svg class="platform-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="checklist-body">
+            <div class="checklist-item" id="ci-google-1">
+              <input type="checkbox" id="g1" onchange="checklistChange()">
+              <label for="g1"><strong>Create Google Merchant Center account</strong><span class="check-hint">merchants.google.com — verify your business and website</span></label>
+            </div>
+            <div class="checklist-item" id="ci-google-2">
+              <input type="checkbox" id="g2" onchange="checklistChange()">
+              <label for="g2"><strong>Upload your product feed</strong><span class="check-hint">Use the generated "Provider payload" feed row above — submit via Merchant Center → Products → Add products</span></label>
+            </div>
+            <div class="checklist-item" id="ci-google-3">
+              <input type="checkbox" id="g3" onchange="checklistChange()">
+              <label for="g3"><strong>Add JSON-LD schema to your product page</strong><span class="check-hint">Copy the "JSON-LD ← embed this" tab above and paste it inside the &lt;head&gt; of your product page</span></label>
+            </div>
+            <div class="checklist-item" id="ci-google-4">
+              <input type="checkbox" id="g4" onchange="checklistChange()">
+              <label for="g4"><strong>Verify website in Google Search Console</strong><span class="check-hint">search.google.com/search-console — needed for Merchant Center verification</span></label>
+            </div>
+            <div class="checklist-item" id="ci-google-5">
+              <input type="checkbox" id="g5" onchange="checklistChange()">
+              <label for="g5"><strong>Enable Free Shopping Listings</strong><span class="check-hint">Merchant Center → Growth → Manage programs → Free listings</span></label>
+            </div>
+            <div class="checklist-item" id="ci-google-6">
+              <input type="checkbox" id="g6" onchange="checklistChange()">
+              <label for="g6"><strong>Upload product images (min 800×800px)</strong><span class="check-hint">High-res, white background preferred — required for Shopping tab eligibility</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- OpenAI / ChatGPT Shopping -->
+        <div class="platform-card" id="platform-openai">
+          <div class="platform-header" onclick="togglePlatform('openai')">
+            <div class="platform-logo">🤖</div>
+            <div class="platform-info">
+              <div class="platform-name">OpenAI / ChatGPT Shopping</div>
+              <div class="platform-desc">ChatGPT shopping uses Bing's product index</div>
+            </div>
+            <div class="platform-status status-not-started" id="status-openai"><span class="status-dot"></span><span>0 / 6</span></div>
+            <svg class="platform-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="checklist-body">
+            <div class="checklist-item" id="ci-openai-1">
+              <input type="checkbox" id="oa1" onchange="checklistChange()">
+              <label for="oa1"><strong>Create Bing Webmaster Tools account</strong><span class="check-hint">bing.com/webmasters — verify your site so Bing (and ChatGPT) can crawl it</span></label>
+            </div>
+            <div class="checklist-item" id="ci-openai-2">
+              <input type="checkbox" id="oa2" onchange="checklistChange()">
+              <label for="oa2"><strong>Submit sitemap to Bing</strong><span class="check-hint">Include your product pages — Bing Webmaster → Sitemaps → Submit sitemap</span></label>
+            </div>
+            <div class="checklist-item" id="ci-openai-3">
+              <input type="checkbox" id="oa3" onchange="checklistChange()">
+              <label for="oa3"><strong>Add schema.org Product markup to product pages</strong><span class="check-hint">Use the JSON-LD output above — Bing reads this to build its shopping index</span></label>
+            </div>
+            <div class="checklist-item" id="ci-openai-4">
+              <input type="checkbox" id="oa4" onchange="checklistChange()">
+              <label for="oa4"><strong>Submit to Microsoft Merchant Center</strong><span class="check-hint">ads.microsoft.com → create catalog — free product listings boost Bing + ChatGPT rank</span></label>
+            </div>
+            <div class="checklist-item" id="ci-openai-5">
+              <input type="checkbox" id="oa5" onchange="checklistChange()">
+              <label for="oa5"><strong>Ensure robots.txt allows GPTBot</strong><span class="check-hint">Check that GPTBot and Bingbot are not blocked: User-agent: GPTBot / Allow: /</span></label>
+            </div>
+            <div class="checklist-item" id="ci-openai-6">
+              <input type="checkbox" id="oa6" onchange="checklistChange()">
+              <label for="oa6"><strong>Write buyer-intent copy on product page</strong><span class="check-hint">Include your shopping intents naturally in product description — ChatGPT reads visible page text</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anthropic / Claude -->
+        <div class="platform-card" id="platform-anthropic">
+          <div class="platform-header" onclick="togglePlatform('anthropic')">
+            <div class="platform-logo">🧠</div>
+            <div class="platform-info">
+              <div class="platform-name">Anthropic / Claude</div>
+              <div class="platform-desc">Claude web search + agentic shopping tools</div>
+            </div>
+            <div class="platform-status status-not-started" id="status-anthropic"><span class="status-dot"></span><span>0 / 5</span></div>
+            <svg class="platform-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="checklist-body">
+            <div class="checklist-item" id="ci-anthropic-1">
+              <input type="checkbox" id="an1" onchange="checklistChange()">
+              <label for="an1"><strong>Confirm product page is publicly crawlable</strong><span class="check-hint">Check robots.txt — ensure ClaudeBot is not blocked: User-agent: ClaudeBot / Allow: /</span></label>
+            </div>
+            <div class="checklist-item" id="ci-anthropic-2">
+              <input type="checkbox" id="an2" onchange="checklistChange()">
+              <label for="an2"><strong>Add JSON-LD structured data to product page</strong><span class="check-hint">Claude's web browsing reads schema.org markup when it retrieves your product page</span></label>
+            </div>
+            <div class="checklist-item" id="ci-anthropic-3">
+              <input type="checkbox" id="an3" onchange="checklistChange()">
+              <label for="an3"><strong>Validate structured data in Schema Markup Validator</strong><span class="check-hint">validator.schema.org — fix any errors to ensure Claude reads it correctly</span></label>
+            </div>
+            <div class="checklist-item" id="ci-anthropic-4">
+              <input type="checkbox" id="an4" onchange="checklistChange()">
+              <label for="an4"><strong>Add FAQ section to product page</strong><span class="check-hint">Answer "Who is this for?", "What makes it different?", "Is it safe for X?" — Claude extracts this directly</span></label>
+            </div>
+            <div class="checklist-item" id="ci-anthropic-5">
+              <input type="checkbox" id="an5" onchange="checklistChange()">
+              <label for="an5"><strong>Set up MCP server for direct agent integration</strong><span class="check-hint">Optional but powerful — use the MCP response tab above as your tool response shape. See modelcontextprotocol.io</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Perplexity -->
+        <div class="platform-card" id="platform-perplexity">
+          <div class="platform-header" onclick="togglePlatform('perplexity')">
+            <div class="platform-logo">🔎</div>
+            <div class="platform-info">
+              <div class="platform-name">Perplexity Shopping</div>
+              <div class="platform-desc">Answer-first commerce with citations</div>
+            </div>
+            <div class="platform-status status-not-started" id="status-perplexity"><span class="status-dot"></span><span>0 / 6</span></div>
+            <svg class="platform-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="checklist-body">
+            <div class="checklist-item" id="ci-perplexity-1">
+              <input type="checkbox" id="px1" onchange="checklistChange()">
+              <label for="px1"><strong>Apply to Perplexity merchant network</strong><span class="check-hint">perplexity.ai/shopping — submit your brand to be considered for product cards</span></label>
+            </div>
+            <div class="checklist-item" id="ci-perplexity-2">
+              <input type="checkbox" id="px2" onchange="checklistChange()">
+              <label for="px2"><strong>Submit product feed in Perplexity format</strong><span class="check-hint">If approved as merchant — upload feed with GTIN, title, description, price, image, availability</span></label>
+            </div>
+            <div class="checklist-item" id="ci-perplexity-3">
+              <input type="checkbox" id="px3" onchange="checklistChange()">
+              <label for="px3"><strong>Add rich FAQ + review content to product page</strong><span class="check-hint">Perplexity surfaces citation-heavy answers — product pages with Q&amp;A content get cited more often</span></label>
+            </div>
+            <div class="checklist-item" id="ci-perplexity-4">
+              <input type="checkbox" id="px4" onchange="checklistChange()">
+              <label for="px4"><strong>Get listed on review aggregator sites</strong><span class="check-hint">Good Housekeeping, Wirecutter, Allure, etc. — Perplexity heavily cites these for shopping queries</span></label>
+            </div>
+            <div class="checklist-item" id="ci-perplexity-5">
+              <input type="checkbox" id="px5" onchange="checklistChange()">
+              <label for="px5"><strong>Ensure PerplexityBot can crawl your site</strong><span class="check-hint">robots.txt: User-agent: PerplexityBot / Allow: /</span></label>
+            </div>
+            <div class="checklist-item" id="ci-perplexity-6">
+              <input type="checkbox" id="px6" onchange="checklistChange()">
+              <label for="px6"><strong>Publish trust signals on brand page</strong><span class="check-hint">Press coverage, awards, founder story, mission — Perplexity weights brand credibility for emerging brands</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shopify / Shop -->
+        <div class="platform-card" id="platform-shopify">
+          <div class="platform-header" onclick="togglePlatform('shopify')">
+            <div class="platform-logo">🛍️</div>
+            <div class="platform-info">
+              <div class="platform-name">Shopify / Shop &amp; Commerce</div>
+              <div class="platform-desc">Shop app + Shopify AI shopping integrations</div>
+            </div>
+            <div class="platform-status status-not-started" id="status-shopify"><span class="status-dot"></span><span>0 / 5</span></div>
+            <svg class="platform-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="checklist-body">
+            <div class="checklist-item" id="ci-shopify-1">
+              <input type="checkbox" id="sh1" onchange="checklistChange()">
+              <label for="sh1"><strong>Enable the Shop channel in Shopify admin</strong><span class="check-hint">Admin → Sales channels → Shop — makes your products visible in the Shop app</span></label>
+            </div>
+            <div class="checklist-item" id="ci-shopify-2">
+              <input type="checkbox" id="sh2" onchange="checklistChange()">
+              <label for="sh2"><strong>Complete all product fields in Shopify admin</strong><span class="check-hint">Title, description, vendor, type, tags, images, variants, weight — all feed into Shop's AI catalog</span></label>
+            </div>
+            <div class="checklist-item" id="ci-shopify-3">
+              <input type="checkbox" id="sh3" onchange="checklistChange()">
+              <label for="sh3"><strong>Add product metafields for AI context</strong><span class="check-hint">Use Shopify metafields to store: buyer_fit, use_cases, proof_points, differentiators — these power future AI features</span></label>
+            </div>
+            <div class="checklist-item" id="ci-shopify-4">
+              <input type="checkbox" id="sh4" onchange="checklistChange()">
+              <label for="sh4"><strong>Set up Shop Campaigns</strong><span class="check-hint">Shop → Shop Campaigns — paid discovery within the Shop app's AI-powered discovery feed</span></label>
+            </div>
+            <div class="checklist-item" id="ci-shopify-5">
+              <input type="checkbox" id="sh5" onchange="checklistChange()">
+              <label for="sh5"><strong>Enable Shopify Inbox + AI product recommendations</strong><span class="check-hint">Lets customers ask product questions via chat — Shopify AI answers using your product data</span></label>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /platform-grid -->
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard">
+      <div class="eyebrow">Measurement</div>
+      <h2>AI Visibility Dashboard</h2>
+      <p class="section-sub">Track how your AI Visibility Score changes as you complete your profile and platform actions. Sign in to see your history.</p>
+
+      <!-- Logged-out state -->
+      <div id="dashboardGate" class="card" style="text-align:center;padding:48px 32px">
+        <div style="font-size:40px;margin-bottom:16px">📈</div>
+        <h3 style="margin-bottom:8px">Sign in to unlock your dashboard</h3>
+        <p style="color:var(--muted);font-size:14px;margin-bottom:24px;max-width:380px;margin-left:auto;margin-right:auto">Save your profile and we'll track your AI Visibility Score daily. See the exact lift from each action you take.</p>
+        <button class="btn btn-primary" onclick="document.getElementById('authEmail').focus();document.getElementById('authEmail').scrollIntoView({behavior:'smooth'})">Enter your email in the sidebar →</button>
+      </div>
+
+      <!-- Logged-in dashboard -->
+      <div class="dashboard-wrap" id="dashboardContent">
+
+        <div class="sim-notice">
+          <span class="sim-notice-icon">🔬</span>
+          <span><strong>Simulation mode:</strong> Scores are calculated from your profile completeness and checklist progress. Add Perplexity, OpenAI, or Gemini API keys to the backend to run real daily AI query measurements.</span>
+        </div>
+
+        <!-- Score hero -->
+        <div class="score-hero">
+          <div class="score-ring-wrap">
+            <canvas id="scoreRingCanvas"></canvas>
+            <div class="score-ring-center">
+              <div class="score-ring-value" id="dashScore">—</div>
+              <div class="score-ring-label">/ 100</div>
+            </div>
+          </div>
+          <div class="score-summary">
+            <h3 id="dashHeadline">Build your profile to see your score</h3>
+            <p id="dashSubline">Complete the brand questionnaire and platform checklists above to increase your score.</p>
+            <div class="visibility-compare">
+              <div class="vis-item">
+                <div class="vis-label">Without tool</div>
+                <div class="vis-value before" id="dashBefore">~8%</div>
+                <div class="vis-sub">mention likelihood</div>
+              </div>
+              <div class="vis-item" style="padding-left:20px;border-left:1px solid var(--line)">
+                <div class="vis-label">With Agentic Shelf</div>
+                <div class="vis-value after" id="dashAfter">—</div>
+                <div class="vis-sub">projected mention rate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Score history chart -->
+        <div class="card chart-card">
+          <h3 style="margin-bottom:16px">AI Visibility Score over time</h3>
+          <canvas id="historyChart"></canvas>
+          <p style="font-size:12px;color:var(--muted);margin-top:12px">Score recalculated daily. Complete more checklist items or improve your profile to move the line.</p>
+        </div>
+
+        <!-- Per-platform scores -->
+        <h3 style="margin-bottom:14px">Visibility by platform</h3>
+        <div class="platform-score-grid" id="platformScoreGrid">
+          <!-- populated by JS -->
+        </div>
+
+        <!-- Keyword table -->
+        <div class="card" style="margin-bottom:24px">
+          <h3 style="margin-bottom:16px">Mention likelihood by shopping intent</h3>
+          <table class="keyword-table" id="keywordTable">
+            <thead>
+              <tr>
+                <th>Shopping query</th>
+                <th>Baseline</th>
+                <th>Projected</th>
+                <th>Lift</th>
+                <th class="kw-bar-cell"></th>
+              </tr>
+            </thead>
+            <tbody id="keywordTableBody"></tbody>
+          </table>
+          <p style="font-size:12px;color:var(--muted);margin-top:12px">Baseline = estimated mention rate without structured assets. Projected = after full profile + platform actions. Add real API keys to measure actuals.</p>
+        </div>
+
+        <!-- Suggestions -->
+        <div id="suggestionsWrap" style="display:none">
+          <h3 style="margin-bottom:14px">What to do next</h3>
+          <div class="suggestions-list" id="suggestionsList"></div>
+        </div>
+
+        <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="triggerMeasure()">Run measurement now</button>
+          <button class="btn btn-secondary" onclick="loadDashboard()">Refresh</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Assets reference -->
+    <section id="assets">
+      <div class="eyebrow">Generated assets</div>
+      <h2>What we build for you</h2>
+      <p class="section-sub">Six assets, generated from your answers, formatted for each AI platform.</p>
+      <div class="artifact-grid">
+        <div class="card artifact-card">
+          <div class="artifact-icon">📋</div>
+          <div class="artifact-name">Product passport</div>
+          <div class="artifact-desc">Normalized summary of your brand, buyer fit, use cases, differentiators, proof, pricing, and policies — the source of truth for all other assets.</div>
+        </div>
+        <div class="card artifact-card">
+          <div class="artifact-icon">📦</div>
+          <div class="artifact-name">Provider payload</div>
+          <div class="artifact-desc">A product feed row formatted for Google Merchant Center, Microsoft Merchant Center, and Perplexity — ready to upload.</div>
+        </div>
+        <div class="card artifact-card">
+          <div class="artifact-icon">🏷️</div>
+          <div class="artifact-name">JSON-LD schema.org markup</div>
+          <div class="artifact-desc">Drop into your product page &lt;head&gt;. Includes Product, AggregateRating, Offer, and Brand — everything AI crawlers parse.</div>
+        </div>
+        <div class="card artifact-card">
+          <div class="artifact-icon">🤖</div>
+          <div class="artifact-name">MCP tool response</div>
+          <div class="artifact-desc">Anthropic Model Context Protocol response shape — what your product looks like when a Claude shopping agent retrieves it via tool call.</div>
+        </div>
+        <div class="card artifact-card">
+          <div class="artifact-icon">🔍</div>
+          <div class="artifact-name">Shopping intent index</div>
+          <div class="artifact-desc">Your target queries ranked by projected mention lift — tells you which keywords to win first and where to focus proof points.</div>
+        </div>
+        <div class="card artifact-card">
+          <div class="artifact-icon">📈</div>
+          <div class="artifact-name">AI Visibility Score</div>
+          <div class="artifact-desc">A 0–100 composite score across profile completeness, proof quality, structured data, and platform action completion. Tracked daily.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div><!-- /layout -->
+
 <script>
-const fields=['brand','product','category','price','audience','intents','differentiators','proof','inventory','returns'];
-const samples={sunscreen:{brand:'BrightKind',product:'Daily Mineral SPF 40',category:'Beauty & personal care',price:'$32',audience:'People with sensitive skin who want a lightweight, fragrance-free daily face sunscreen.',intents:'best sunscreen for sensitive skin, clean mineral sunscreen for pregnancy, lightweight SPF for daily use, reef-conscious face sunscreen',differentiators:'Zinc-only mineral formula, no added fragrance, third-party SPF testing, refillable aluminum tube, designed to sit cleanly under makeup.',proof:'Third-party SPF lab report, dermatologist tested, fragrance-free formula, cruelty-free certification',inventory:'In stock',returns:'30-day returns with prepaid label on unopened products'},clothing:{brand:'NorthLoop',product:'All-Weather Commuter Jacket',category:'Clothing & apparel',price:'$148',audience:'Urban commuters who want a polished, water-resistant jacket that works for biking, office wear, and travel.',intents:'best rain jacket for commuting, stylish waterproof jacket for work, packable travel jacket, bike commuter outerwear',differentiators:'PFAS-free water resistance, reflective cuff details, recycled nylon shell, office-appropriate cut, packs into its own pocket.',proof:'OEKO-TEX certified fabric, recycled nylon documentation, customer review average 4.7 stars, repair guarantee',inventory:'In stock',returns:'45-day returns and free size exchanges'}};
-const providerDefs=[['OpenAI / ChatGPT Shopping','Creates product feed fields and ACP-style commerce facts. Actual submission requires merchant/feed access.'],['Anthropic / Claude MCP','Creates an MCP catalog response so Claude-style agents can query the product facts through a connector.'],['Google Shopping Graph','Creates JSON-LD and Merchant Center-style fields for product discovery surfaces.'],['Perplexity / answer commerce','Creates citation-ready product summary and checkout trust fields.'],['Shopify / commerce catalog','Maps storefront product data into agent-ready catalog fields.']];
-let activeView='passport',simulationHasRun=false;const $=id=>document.getElementById(id);const split=value=>String(value||'').split(/,|\n/).map(item=>item.trim()).filter(Boolean);const title=value=>String(value||'').replace(/\w\S*/g,word=>word.charAt(0).toUpperCase()+word.slice(1));
-function getData(){return Object.fromEntries(fields.map(field=>[field,$(field).value.trim()]))}
-function score(d){const required=['brand','product','category','price','audience','intents','differentiators','proof','inventory','returns'];return Math.round(required.filter(field=>d[field]).length/required.length*100)}
-function baseline(d){return d.brand&&d.product?6+Math.min(10,split(d.intents).length*2):2}
-function afterScore(d){return Math.min(78,Math.round(baseline(d)+score(d)*.45+split(d.proof).length*4+split(d.intents).length*3))}
-function promptScores(d){const prompts=split(d.intents);const fallbacks=[`best ${d.category||'product'} for ${d.audience||'a specific buyer'}`,`new alternative to mainstream ${d.category||'consumer'} brands`,`giftable ${d.category||'product'} with clear proof`];return[...prompts,...fallbacks].slice(0,7).map((prompt,index)=>({prompt,before:Math.max(1,baseline(d)-index),after:Math.max(8,Math.min(96,afterScore(d)-index*5))}))}
-function buildPassport(d){return{brand:d.brand||'Unnamed brand',product:d.product||'Unnamed product',category:d.category,target_audience:d.audience||'Missing',agentic_intents:split(d.intents),why_recommend:d.differentiators||'Missing',proof_points:split(d.proof),price:d.price||'Missing',availability:d.inventory||'Missing',return_policy:d.returns||'Missing',agent_summary:`${d.product||'This product'} should be considered when the shopper asks for ${split(d.intents)[0]||'a relevant product'} and needs proof-backed product facts.`}}
-function buildFeed(d){return{destination:'provider-ready export',note:'This demo generates the payload. A production connector would submit it to OpenAI, Google, Shopify, or another approved feed endpoint.',product_feed_row:{id:`${(d.brand||'brand').toLowerCase().replace(/[^a-z0-9]+/g,'-')}-${(d.product||'product').toLowerCase().replace(/[^a-z0-9]+/g,'-')}`,title:`${d.brand||'Brand'} ${d.product||'Product'}`,category:d.category,price:d.price,availability:d.inventory,description:d.audience,recommendation_context:split(d.intents),evidence:split(d.proof),return_policy:d.returns},json_ld_product_schema:{'@context':'https://schema.org','@type':'Product',name:d.product||'Product',brand:d.brand||'Brand',category:d.category,description:d.audience||'',offers:{'@type':'Offer',price:d.price||'',availability:d.inventory||''}}}}
-function buildMcp(d){return{tool:'get_product_recommendation',description:'MCP-style response for an agent evaluating whether to recommend this product.',response:{candidate_product:`${d.brand||'Brand'} ${d.product||'Product'}`,match_when_user_asks:split(d.intents),recommend_if:d.audience,cite_these_proofs:split(d.proof),do_not_overclaim:'Only use claims present in proof_points or merchant-provided policy fields.',purchase_readiness:{price:d.price,availability:d.inventory,returns:d.returns}}}}
-function toast(message){$('toast').textContent=message;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2400)}
-function render(){const d=getData(),readiness=score(d),prompts=promptScores(d),before=Math.round(prompts.reduce((s,i)=>s+i.before,0)/prompts.length),after=Math.round(prompts.reduce((s,i)=>s+i.after,0)/prompts.length);$('score').textContent=readiness+'%';$('lift').textContent=`+${Math.max(0,after-before)}%`;$('intentCount').textContent=prompts.length;$('baselineText').textContent=`Estimated baseline: ${before}% Agent Share of Answers across ${prompts.length||0} relevant prompts before publishing structured assets.`;$('afterText').textContent=`Estimated after publishing: ${after}% Agent Share of Answers when product facts, proof, and provider payloads are complete.`;const assets={passport:buildPassport(d),feed:buildFeed(d),mcp:buildMcp(d)};$('artifactCode').textContent=JSON.stringify(assets[activeView],null,2);$('providerList').innerHTML=providerDefs.map(([name,description])=>`<article class="channel ${readiness>=75?'ready':'warning'}"><span>${readiness>=75?'Payload generated':'Needs missing fields'}</span><strong>${name}</strong><small>${description}</small></article>`).join('');$('artifactCards').innerHTML=[['Product passport','A normalized source of truth for agents to understand fit, claims, proof, price, inventory, and returns.'],['Provider payload','Feed and JSON-LD fields that can be submitted through approved merchant/provider connectors.'],['MCP response','A tool response shape for Anthropic/Claude-style agents that query product catalogs.'],['Agent pitch',`${d.product||'The product'} is positioned for: ${split(d.intents).slice(0,3).join(', ')||'relevant shopping prompts'}.`],['Measurement plan',`Track ${prompts.length||0} prompts daily and calculate mention rate, citation rate, and rank position.`],['Missing proof queue',readiness>=90?'No major data gaps in the current demo payload.':'Complete proof, differentiators, returns, price, and intent fields before submission.']].map(([h,c])=>`<article class="artifact"><strong>${h}</strong><small class="muted">${c}</small></article>`).join('');if(simulationHasRun)renderSimulation()}
-function renderSimulation(){const d=getData();$('prompts').innerHTML=promptScores(d).map(item=>`<div class="prompt"><div><strong>${item.prompt}</strong><small>Before ${item.before}% mention likelihood · after asset publishing <span class="delta">${item.after}%</span></small></div><div><div class="bar" style="--score:${item.after}%"><i></i></div><small class="delta">+${item.after-item.before}% lift</small></div></div>`).join('')}
-function setSample(key){Object.entries(samples[key]).forEach(([field,value])=>{$(field).value=value});simulationHasRun=true;render();renderSimulation();toast(`${title(key)} sample loaded and simulation refreshed.`)}
-fields.forEach(field=>$(field).addEventListener('input',render));document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>{activeView=tab.dataset.view;document.querySelectorAll('.tab').forEach(item=>item.classList.toggle('active',item===tab));render()}));$('sample').addEventListener('click',()=>setSample('sunscreen'));$('clothingSample').addEventListener('click',()=>setSample('clothing'));$('simulate').addEventListener('click',()=>{simulationHasRun=true;renderSimulation();toast('Visibility simulation refreshed from current product inputs.')});$('copyAsset').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('artifactCode').textContent);toast('Active asset copied.')}catch{toast('Copy blocked by browser. Select the visible asset text.')}});document.getElementById('brandForm').addEventListener('reset',()=>setTimeout(()=>{simulationHasRun=false;$('prompts').innerHTML='';render()},0));render();
+// ─── State ────────────────────────────────────────────────────────────────────
+
+const API = window.location.origin;
+let sessionToken = null;
+let currentTab = 'passport';
+let scoreRingChart = null;
+let historyChart = null;
+let currentMeasurement = null;
+
+// Platform checklist item counts (for status indicators)
+const PLATFORM_COUNTS = { google: 6, openai: 6, anthropic: 5, perplexity: 6, shopify: 5 };
+const PLATFORM_IDS = {
+  google:     ['g1','g2','g3','g4','g5','g6'],
+  openai:     ['oa1','oa2','oa3','oa4','oa5','oa6'],
+  anthropic:  ['an1','an2','an3','an4','an5'],
+  perplexity: ['px1','px2','px3','px4','px5','px6'],
+  shopify:    ['sh1','sh2','sh3','sh4','sh5']
+};
+
+// ─── Session init ─────────────────────────────────────────────────────────────
+
+(function init() {
+  const params = new URLSearchParams(location.search);
+
+  // Capture session from magic link redirect
+  const sessionFromUrl = params.get('session');
+  if (sessionFromUrl) {
+    localStorage.setItem('as_session', sessionFromUrl);
+    window.history.replaceState({}, '', location.pathname);
+  }
+
+  const authFailed = params.get('auth');
+  if (authFailed === 'failed') {
+    showToast('Sign-in link expired. Request a new one.');
+    window.history.replaceState({}, '', location.pathname);
+  }
+
+  sessionToken = localStorage.getItem('as_session');
+  if (sessionToken) loadMe();
+})();
+
+// ─── Auth ─────────────────────────────────────────────────────────────────────
+
+async function sendMagicLink() {
+  const email = document.getElementById('authEmail').value.trim();
+  if (!email) { showToast('Enter your email first'); return; }
+
+  const btn = document.querySelector('.btn-magic');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  try {
+    const res = await fetch(`${API}/api/auth/request`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.error || 'Failed');
+
+    showToast('Magic link sent! Check your inbox.');
+
+    // Dev mode: show the link in a banner
+    if (json.devPreviewUrl) {
+      document.getElementById('devBanner').classList.add('show');
+      document.getElementById('devLink').href = json.magicLink;
+      document.getElementById('devPreview').href = json.devPreviewUrl;
+    }
+  } catch (e) {
+    showToast('Error: ' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send sign-in link →';
+  }
+}
+
+async function loadMe() {
+  try {
+    const res = await fetch(`${API}/api/auth/me`, { headers: authHeaders() });
+    if (!res.ok) { sessionToken = null; localStorage.removeItem('as_session'); return; }
+    const { user, brand } = await res.json();
+    setLoggedIn(user, brand);
+  } catch (e) {
+    // Backend not running — stay logged out but don't crash
+  }
+}
+
+function setLoggedIn(user, brand) {
+  document.getElementById('authLoggedOut').style.display = 'none';
+  document.getElementById('authLoggedIn').style.display = 'block';
+  document.getElementById('authUserEmail').textContent = user.email;
+  document.getElementById('authUserSince').textContent = 'Member since ' + new Date(user.created_at * 1000).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+  document.getElementById('saveBtn').disabled = false;
+  document.getElementById('saveHint').textContent = 'Saving tracks your score history over time';
+
+  // Restore saved brand data
+  if (brand) {
+    populateForm(brand.data);
+    populateChecklist(brand.checklist || {});
+    render();
+  }
+
+  document.getElementById('dashboardGate').style.display = 'none';
+  document.getElementById('dashboardContent').classList.add('visible');
+  loadDashboard();
+}
+
+async function logout() {
+  try { await fetch(`${API}/api/auth/logout`, { method: 'POST', headers: authHeaders() }); } catch (_) {}
+  sessionToken = null;
+  localStorage.removeItem('as_session');
+  location.reload();
+}
+
+function authHeaders() {
+  return { 'Content-Type': 'application/json', 'Authorization': `Bearer ${sessionToken}` };
+}
+
+// ─── Form helpers ─────────────────────────────────────────────────────────────
+
+const FIELDS = ['brand','product','category','price','url','productUrl','rating','reviewCount',
+  'audience','intents','differentiators','proof','certifications','notFor',
+  'inventory','shipping','returns','geography','ingredients','sustainability'];
+
+function getFormData() {
+  const d = {};
+  FIELDS.forEach(f => {
+    const el = document.getElementById('f-' + f);
+    if (el) d[f] = el.value;
+  });
+  return d;
+}
+
+function populateForm(data) {
+  FIELDS.forEach(f => {
+    const el = document.getElementById('f-' + f);
+    if (el && data[f] !== undefined) el.value = data[f];
+  });
+}
+
+function getChecklist() {
+  const c = {};
+  Object.entries(PLATFORM_IDS).forEach(([platform, ids]) => {
+    ids.forEach(id => { c[id] = document.getElementById(id)?.checked || false; });
+  });
+  return c;
+}
+
+function populateChecklist(checklist) {
+  Object.entries(checklist).forEach(([id, checked]) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.checked = checked;
+      el.closest('.checklist-item')?.classList.toggle('done', checked);
+    }
+  });
+  updateAllPlatformStatuses();
+}
+
+// ─── Rendering ────────────────────────────────────────────────────────────────
+
+function score() {
+  const d = getFormData();
+  const required = ['brand','product','category','price','audience','intents','differentiators','proof','inventory','returns'];
+  const filled = required.filter(f => d[f] && d[f].trim()).length;
+  return Math.round((filled / required.length) * 100);
+}
+
+function baseline() { return 8; }
+
+function afterScore(d) {
+  if (!d) d = getFormData();
+  const profileFields = ['brand','product','category','price','url','productUrl','audience','intents','differentiators','proof','inventory','returns','shipping','rating','certifications'];
+  const filled = profileFields.filter(f => d[f] && String(d[f]).trim()).length;
+  const completeness = Math.round((filled / profileFields.length) * 30);
+
+  const intents = splitLines(d.intents);
+  const intentScore = Math.min(intents.length * 4, 20);
+  const proofs = splitLines(d.proof);
+  const proofScore = Math.min(proofs.length * 4, 16);
+  const certBonus = (d.certifications || '').trim().length > 0 ? 4 : 0;
+  const jsonLdFields = ['brand','product','price','inventory','returns','url','rating','category'];
+  const jsonLdScore = Math.round(jsonLdFields.filter(f => d[f] && String(d[f]).trim()).length / jsonLdFields.length * 15);
+  const total = completeness + intentScore + proofScore + certBonus + jsonLdScore;
+  return Math.round(5 + (total / 100) * 67);
+}
+
+function splitLines(str) {
+  return String(str || '').split(/[\n,]/).map(s => s.trim()).filter(Boolean);
+}
+
+function render() {
+  const d = getFormData();
+  const s = score();
+  const any = s > 0 || d.brand || d.product;
+
+  document.getElementById('metricsRow').style.display = any ? 'grid' : 'none';
+  document.getElementById('assetSection').style.display = any ? 'block' : 'none';
+
+  if (any) {
+    document.getElementById('mReadiness').textContent = s + '%';
+    document.getElementById('mBefore').textContent = baseline() + '%';
+    document.getElementById('mAfter').textContent = afterScore(d) + '%';
+    renderAsset();
+  }
+}
+
+function renderAsset() {
+  let content;
+  switch (currentTab) {
+    case 'passport': content = buildPassport(); break;
+    case 'feed':     content = buildFeed(); break;
+    case 'mcp':      content = buildMcp(); break;
+    case 'jsonld':   content = buildJsonLd(); break;
+  }
+  document.getElementById('outputBox').textContent = JSON.stringify(content, null, 2);
+}
+
+function switchTab(tab, el) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderAsset();
+}
+
+// ─── Asset builders ───────────────────────────────────────────────────────────
+
+function buildPassport() {
+  const d = getFormData();
+  const intents = splitLines(d.intents);
+  const proofs = splitLines(d.proof);
+  const certs = splitLines(d.certifications);
+  return {
+    passport_version: '2.0',
+    brand: d.brand,
+    product: d.product,
+    category: d.category,
+    price: d.price,
+    urls: { brand: d.url || null, product: d.productUrl || null },
+    rating: d.rating ? { average: parseFloat(d.rating), count: parseInt(d.reviewCount) || null } : null,
+    audience: d.audience,
+    geographic_availability: d.geography || 'Not specified',
+    agentic_intents: intents,
+    differentiators: d.differentiators,
+    proof_points: proofs,
+    certifications: certs,
+    not_for: d.notFor || null,
+    ingredients_or_materials: d.ingredients || null,
+    sustainability: d.sustainability || null,
+    availability: d.inventory,
+    shipping: d.shipping || null,
+    returns: d.returns,
+    agent_summary: `${d.brand} ${d.product} (${d.price}) — ${d.category}. Best for: ${intents.slice(0,3).join(', ') || 'general use'}. Key proof: ${proofs.slice(0,2).join('; ') || 'see profile'}. ${d.inventory}.`
+  };
+}
+
+function buildFeed() {
+  const d = getFormData();
+  const intents = splitLines(d.intents);
+  return {
+    feed_row: {
+      id: (d.brand + '-' + d.product).toLowerCase().replace(/\s+/g, '-'),
+      title: `${d.brand} ${d.product}`,
+      category: d.category,
+      price: d.price,
+      availability: (d.inventory || '').toLowerCase().replace(' ', '_') || 'in_stock',
+      link: d.productUrl || d.url || '',
+      image_link: '',
+      brand: d.brand,
+      description: `${d.differentiators || ''} ${splitLines(d.proof).join('. ')}`.trim(),
+      recommendation_context: intents.join('; '),
+      proof_summary: splitLines(d.proof).slice(0, 3).join(' | '),
+      certifications: d.certifications || '',
+      returns: d.returns,
+      shipping: d.shipping || '',
+      rating: d.rating || '',
+      review_count: d.reviewCount || '',
+      sustainability: d.sustainability || ''
+    },
+    submit_to: {
+      google_merchant_center: 'Upload via Merchant Center → Products → Add products → Use data feed',
+      microsoft_merchant_center: 'ads.microsoft.com → Merchant center → Catalogs → Create catalog',
+      perplexity: 'perplexity.ai/shopping — apply as merchant, then submit product catalog',
+      shopify: 'Admin → Products → Import → Upload CSV (convert this feed row to Shopify CSV format)'
+    }
+  };
+}
+
+function buildJsonLd() {
+  const d = getFormData();
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: `${d.brand} ${d.product}`,
+    brand: { '@type': 'Brand', name: d.brand },
+    category: d.category,
+    description: `${d.differentiators || ''} ${splitLines(d.proof).slice(0,2).join('. ')}`.trim(),
+    url: d.productUrl || d.url || undefined,
+    offers: {
+      '@type': 'Offer',
+      price: (d.price || '').replace(/[^0-9.]/g, '') || undefined,
+      priceCurrency: 'USD',
+      availability: d.inventory === 'In stock' ? 'https://schema.org/InStock'
+        : d.inventory === 'Out of stock' ? 'https://schema.org/OutOfStock'
+        : d.inventory === 'Preorder' ? 'https://schema.org/PreOrder'
+        : 'https://schema.org/LimitedAvailability',
+      url: d.productUrl || d.url || undefined,
+      hasMerchantReturnPolicy: d.returns ? {
+        '@type': 'MerchantReturnPolicy',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        description: d.returns
+      } : undefined,
+      shippingDetails: d.shipping ? {
+        '@type': 'OfferShippingDetails',
+        deliveryTime: { '@type': 'ShippingDeliveryTime', description: d.shipping }
+      } : undefined
+    }
+  };
+  if (d.rating && parseFloat(d.rating)) {
+    jsonLd.aggregateRating = {
+      '@type': 'AggregateRating',
+      ratingValue: parseFloat(d.rating),
+      reviewCount: parseInt(d.reviewCount) || undefined,
+      bestRating: 5,
+      worstRating: 1
+    };
+  }
+  if (d.ingredients) {
+    jsonLd.material = d.ingredients;
+  }
+  // Strip undefined keys
+  return JSON.parse(JSON.stringify(jsonLd));
+}
+
+function buildMcp() {
+  const d = getFormData();
+  const intents = splitLines(d.intents);
+  const proofs = splitLines(d.proof);
+  return {
+    tool: 'product_lookup',
+    content: [{
+      type: 'product_candidate',
+      brand: d.brand,
+      product: d.product,
+      category: d.category,
+      match_intents: intents,
+      recommendation_criteria: {
+        buyer_fit: d.audience,
+        differentiators: splitLines(d.differentiators),
+        proof_citations: proofs,
+        certifications: splitLines(d.certifications),
+        not_for: d.notFor || null
+      },
+      purchase_readiness: {
+        price: d.price,
+        availability: d.inventory,
+        shipping: d.shipping || null,
+        returns: d.returns,
+        url: d.productUrl || d.url || null
+      },
+      overclaim_warnings: [],
+      confidence: proofs.length >= 3 ? 'high' : proofs.length >= 1 ? 'medium' : 'low'
+    }]
+  };
+}
+
+// ─── Checklist ────────────────────────────────────────────────────────────────
+
+function togglePlatform(id) {
+  const card = document.getElementById(`platform-${id}`);
+  card.classList.toggle('open');
+}
+
+function checklistChange() {
+  updateAllPlatformStatuses();
+  // Auto-save checklist if logged in
+  if (sessionToken) debouncedSaveChecklist();
+}
+
+function updateAllPlatformStatuses() {
+  Object.entries(PLATFORM_IDS).forEach(([platform, ids]) => {
+    const checked = ids.filter(id => document.getElementById(id)?.checked).length;
+    const total = ids.length;
+    const el = document.getElementById(`status-${platform}`);
+    if (!el) return;
+    el.querySelector('span:last-child').textContent = `${checked} / ${total}`;
+    el.className = 'platform-status ' + (
+      checked === total ? 'status-ready' :
+      checked > 0 ? 'status-warning' :
+      'status-not-started'
+    );
+    // Mark checklist items as done
+    ids.forEach(id => {
+      const ci = document.getElementById(`ci-${platform}-${ids.indexOf(id) + 1}`);
+      if (ci) ci.classList.toggle('done', document.getElementById(id)?.checked || false);
+    });
+  });
+}
+
+let checklistSaveTimer = null;
+function debouncedSaveChecklist() {
+  clearTimeout(checklistSaveTimer);
+  checklistSaveTimer = setTimeout(async () => {
+    try {
+      await fetch(`${API}/api/brands/me/checklist`, {
+        method: 'PATCH',
+        headers: authHeaders(),
+        body: JSON.stringify({ checklist: getChecklist() })
+      });
+    } catch (_) {}
+  }, 1500);
+}
+
+// ─── Save & measure ───────────────────────────────────────────────────────────
+
+async function saveProfile() {
+  if (!sessionToken) { showToast('Sign in first'); return; }
+  const btn = document.getElementById('saveBtn');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+  try {
+    const res = await fetch(`${API}/api/brands`, {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ data: getFormData(), checklist: getChecklist() })
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.error);
+    currentMeasurement = json.measurement;
+    showToast('Profile saved! Dashboard updated.');
+    document.getElementById('dashboardGate').style.display = 'none';
+    document.getElementById('dashboardContent').classList.add('visible');
+    renderDashboard(json.measurement, null);
+    loadDashboard();
+  } catch (e) {
+    showToast('Error: ' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Save & measure →';
+  }
+}
+
+async function triggerMeasure() {
+  if (!sessionToken) return;
+  showToast('Running measurement…');
+  try {
+    const res = await fetch(`${API}/api/brands/me/measure`, { method: 'POST', headers: authHeaders() });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.error);
+    showToast('Measurement complete!');
+    renderDashboard(json.measurement, null);
+    loadDashboard();
+  } catch (e) {
+    showToast('Error: ' + e.message);
+  }
+}
+
+function runSimulation() {
+  const d = getFormData();
+  if (!d.brand && !d.product) { showToast('Fill in at least brand name first'); return; }
+  render();
+  const s = score();
+  const a = afterScore(d);
+  document.getElementById('metricsRow').style.display = 'grid';
+  document.getElementById('assetSection').style.display = 'block';
+  showToast(`Score preview: ${a}% projected mention rate`);
+}
+
+// ─── Dashboard ────────────────────────────────────────────────────────────────
+
+async function loadDashboard() {
+  if (!sessionToken) return;
+  try {
+    const res = await fetch(`${API}/api/brands/me/measurements`, { headers: authHeaders() });
+    const { measurements } = await res.json();
+    if (!measurements.length) return;
+    const latest = measurements[measurements.length - 1];
+    renderDashboard(latest, measurements);
+  } catch (_) {}
+}
+
+function renderDashboard(measurement, history) {
+  if (!measurement) return;
+
+  const score = measurement.score;
+  document.getElementById('dashScore').textContent = score;
+
+  const headline = score >= 75 ? 'Strong AI visibility' : score >= 50 ? 'Growing visibility' : score >= 25 ? 'Visibility in progress' : 'Getting started';
+  document.getElementById('dashHeadline').textContent = headline;
+  document.getElementById('dashSubline').textContent =
+    score >= 75 ? 'Your brand is well-positioned for AI recommendations. Keep platform actions complete and check monthly.'
+    : score >= 50 ? 'You\'re on the right track. Focus on completing platform checklists and adding more proof points.'
+    : 'Complete the profile fully and start working through platform checklists to see significant gains.';
+
+  document.getElementById('dashBefore').textContent = (measurement.baseline || 8) + '%';
+  document.getElementById('dashAfter').textContent = (measurement.afterMention || score) + '%';
+
+  // Score ring
+  if (scoreRingChart) scoreRingChart.destroy();
+  const ringCtx = document.getElementById('scoreRingCanvas').getContext('2d');
+  const color = score >= 75 ? '#11a36b' : score >= 50 ? '#e6a93a' : '#2868d8';
+  scoreRingChart = new Chart(ringCtx, {
+    type: 'doughnut',
+    data: {
+      datasets: [{ data: [score, 100 - score], backgroundColor: [color, '#eef3f7'], borderWidth: 0, circumference: 300, rotation: 210 }]
+    },
+    options: { responsive: false, cutout: '78%', plugins: { legend: { display: false }, tooltip: { enabled: false } }, animation: { duration: 600 } }
+  });
+
+  // Platform scores
+  const platforms = [
+    { key: 'google', label: 'Google', logo: '🔍' },
+    { key: 'openai', label: 'OpenAI', logo: '🤖' },
+    { key: 'anthropic', label: 'Claude', logo: '🧠' },
+    { key: 'perplexity', label: 'Perplexity', logo: '🔎' },
+    { key: 'shopify', label: 'Shopify', logo: '🛍️' }
+  ];
+  const psGrid = document.getElementById('platformScoreGrid');
+  const ps = measurement.platformScores || {};
+  psGrid.innerHTML = platforms.map(p => {
+    const val = Math.min(ps[p.key] || 0, 100);
+    return `<div class="card platform-score-card">
+      <div class="ps-logo">${p.logo}</div>
+      <div class="ps-name">${p.label}</div>
+      <div class="ps-score">${val}</div>
+      <div class="ps-bar-wrap"><div class="ps-bar" style="width:${val}%"></div></div>
+    </div>`;
+  }).join('');
+
+  // Keyword table
+  const kws = measurement.keywordScores || [];
+  const tbody = document.getElementById('keywordTableBody');
+  tbody.innerHTML = kws.map(k => {
+    const lift = (k.after || 0) - (k.baseline || 0);
+    const maxVal = Math.max(k.after || 0, 10);
+    return `<tr>
+      <td class="kw-query">${k.query}</td>
+      <td class="kw-before">${k.baseline}%</td>
+      <td class="kw-after">${k.after}%</td>
+      <td class="kw-lift positive">+${lift}%</td>
+      <td class="kw-bar-cell">
+        <div class="kw-bar-outer">
+          <div class="kw-bar-before" style="width:${(k.baseline/maxVal)*100}%"></div>
+          <div class="kw-bar-after" style="width:${(k.after/maxVal)*100}%;left:0;top:0;position:absolute"></div>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  // History chart
+  if (history && history.length > 1) {
+    if (historyChart) historyChart.destroy();
+    const hCtx = document.getElementById('historyChart').getContext('2d');
+    const labels = history.map(m => new Date(m.createdAt * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+    const scores = history.map(m => m.score);
+    historyChart = new Chart(hCtx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'AI Visibility Score',
+          data: scores,
+          borderColor: '#2868d8',
+          backgroundColor: 'rgba(40,104,216,.08)',
+          tension: 0.4,
+          fill: true,
+          pointRadius: 4,
+          pointBackgroundColor: '#2868d8'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { min: 0, max: 100, grid: { color: '#eef3f7' }, ticks: { font: { size: 12 } } },
+          x: { grid: { display: false }, ticks: { font: { size: 12 } } }
+        },
+        plugins: { legend: { display: false }, tooltip: { mode: 'index' } }
+      }
+    });
+  } else {
+    // Single point — show a placeholder message
+    const hCtx = document.getElementById('historyChart').getContext('2d');
+    if (historyChart) historyChart.destroy();
+    historyChart = new Chart(hCtx, {
+      type: 'line',
+      data: {
+        labels: ['Today'],
+        datasets: [{
+          data: [score],
+          borderColor: '#2868d8',
+          backgroundColor: 'rgba(40,104,216,.08)',
+          pointRadius: 6,
+          pointBackgroundColor: '#2868d8'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { min: 0, max: 100, grid: { color: '#eef3f7' } },
+          x: { grid: { display: false } }
+        },
+        plugins: { legend: { display: false }, tooltip: { mode: 'index' } }
+      }
+    });
+  }
+
+  // Suggestions
+  if (measurement.suggestions && measurement.suggestions.length > 0) {
+    document.getElementById('suggestionsWrap').style.display = 'block';
+    document.getElementById('suggestionsList').innerHTML = measurement.suggestions.map(s =>
+      `<div class="suggestion-item"><span class="suggestion-icon">💡</span><span class="suggestion-text">${s.text}</span></div>`
+    ).join('');
+  } else {
+    document.getElementById('suggestionsWrap').style.display = 'none';
+  }
+}
+
+// ─── Samples ──────────────────────────────────────────────────────────────────
+
+const SAMPLES = {
+  sunscreen: {
+    brand: 'BrightKind', product: 'Daily Mineral SPF 40', category: 'Beauty & personal care',
+    price: '$32', url: 'https://brightkind.co', productUrl: 'https://brightkind.co/spf40',
+    rating: '4.8', reviewCount: '412',
+    audience: 'Adults with sensitive or reactive skin who want daily broad-spectrum SPF that won\'t clog pores, works under makeup, and is safe during pregnancy.',
+    intents: 'Sensitive skin sunscreen\nPregnancy-safe SPF\nReef-safe sunscreen for daily use\nFragrance-free face sunscreen\nMineral SPF under makeup',
+    differentiators: 'Zinc-only formula (no chemical UV filters), refillable aluminium tube, compatible with all skin tones, third-party tested for reef safety.',
+    proof: 'Dermatologist-tested (board-certified, 2024)\nHawaii reef-safe certified\nEWG Verified Green\nFragrance-free (IFRA certified)\n4.8 stars from 412 reviews',
+    certifications: 'EWG Verified, Hawaii reef-safe, Leaping Bunny cruelty-free, IFRA fragrance-free',
+    notFor: 'Not ideal for people who prefer chemical SPF for a sheerer finish or those wanting a tinted formula.',
+    inventory: 'In stock', shipping: '2–4 business days', returns: '30-day returns, prepaid label',
+    geography: 'US, Canada',
+    ingredients: 'Zinc oxide 20% (non-nano), hyaluronic acid, vitamin E, squalane, niacinamide',
+    sustainability: 'Refillable aluminium tube, FSC-certified box, carbon-neutral shipping via EcoCart, 1% of revenue to reef restoration.'
+  },
+  jacket: {
+    brand: 'NorthLoop', product: 'All-Weather Commuter Jacket', category: 'Clothing & apparel',
+    price: '$148', url: 'https://northloopco.com', productUrl: 'https://northloopco.com/commuter-jacket',
+    rating: '4.7', reviewCount: '238',
+    audience: 'Urban commuters who bike, walk, or take transit to work and need a jacket that looks professional, handles rain, and packs down small for travel.',
+    intents: 'Rain jacket for bike commuting\nStylish waterproof jacket for the office\nPackable travel jacket\nWind and rain jacket for urban commuters\nSustainable waterproof jacket',
+    differentiators: 'PFAS-free water resistance (no forever chemicals), YKK zippers, reflective piping for cycling safety, packs into its own chest pocket.',
+    proof: 'OEKO-TEX Standard 100 certified\nPFAS-free (third-party lab tested)\nRecycled nylon shell (50% post-consumer)\n4.7 stars, 238 reviews\nLifetime repair guarantee',
+    certifications: 'OEKO-TEX Standard 100, B Corp pending, bluesign approved fabric',
+    notFor: 'Not for extreme mountaineering or heavy downpours — it\'s a city commuter jacket, not technical alpine gear.',
+    inventory: 'In stock', shipping: '3–5 business days', returns: '45-day returns, free exchanges',
+    geography: 'US, Canada, UK, EU',
+    ingredients: 'Shell: 100% recycled nylon (50% post-consumer). Lining: recycled polyester. DWR: PFAS-free C0 treatment.',
+    sustainability: 'Recycled nylon shell, PFAS-free DWR coating, lifetime repair program, plastic-free packaging, carbon offset on all orders.'
+  }
+};
+
+function loadSample(key) {
+  populateForm(SAMPLES[key]);
+  render();
+  showToast(`${SAMPLES[key].brand} sample loaded`);
+}
+
+function resetForm() {
+  FIELDS.forEach(f => {
+    const el = document.getElementById('f-' + f);
+    if (el) el.value = '';
+  });
+  document.getElementById('metricsRow').style.display = 'none';
+  document.getElementById('assetSection').style.display = 'none';
+}
+
+// ─── Copy ─────────────────────────────────────────────────────────────────────
+
+function copyAsset() {
+  const text = document.getElementById('outputBox').textContent;
+  navigator.clipboard.writeText(text).then(() => showToast('Copied to clipboard'));
+}
+
+// ─── Toast ────────────────────────────────────────────────────────────────────
+
+let toastTimer = null;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ─── Nav active state ─────────────────────────────────────────────────────────
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => observer.observe(s));
 </script>
 </body>
 </html>
