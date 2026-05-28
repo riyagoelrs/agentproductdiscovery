@@ -948,6 +948,7 @@ let currentTab = 'passport';
 let scoreRingChart = null;
 let historyChart = null;
 let currentMeasurement = null;
+let backendAvailable = false;
 
 // Platform checklist item counts (for status indicators)
 const PLATFORM_COUNTS = { google: 6, openai: 6, anthropic: 5, perplexity: 6, shopify: 5 };
@@ -978,7 +979,18 @@ const PLATFORM_IDS = {
   }
 
   sessionToken = localStorage.getItem('as_session');
-  if (sessionToken) loadMe();
+
+  // Detect if the backend API is reachable (GitHub Pages = no backend)
+  fetch(`${API}/api/auth/me`, { method: 'GET' })
+    .then(r => { backendAvailable = true; if (sessionToken) loadMe(); })
+    .catch(() => {
+      backendAvailable = false;
+      document.getElementById('authLoggedOut').innerHTML =
+        '<div class="auth-label">Static preview</div>' +
+        '<p style="font-size:12px;color:var(--muted);line-height:1.5;margin:0">The questionnaire, assets, and checklists work here. <strong>Deploy the backend</strong> to unlock sign-in, saved profiles, and measurement tracking.</p>';
+      document.getElementById('saveBtn').style.display = 'none';
+      document.getElementById('saveHint').textContent = '';
+    });
 })();
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
